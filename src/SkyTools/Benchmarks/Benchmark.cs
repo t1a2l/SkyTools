@@ -133,7 +133,7 @@ namespace SkyTools.Benchmarks
                 "-----                       SkyTools Benchmark             -------" + Environment.NewLine +
                 "------------------------------------------------------------------" + Environment.NewLine +
                 string.Join(";", methodNames) + Environment.NewLine +
-                columns + Environment.NewLine;
+                headers + Environment.NewLine;
 
             string data = BenchmarkPatch.DataCollector.Dump(methods);
             Log.Info(header + data);
