@@ -126,7 +126,7 @@ namespace SkyTools.Benchmarks
             string[] methodNames = methods.Select(m => m.ToFullString() + ";;;;").ToArray();
 
             const string columns = "Count;Average;Median;Maximum;";
-            string headers = string.Concat(Enumerable.Repeat(columns, methodNames.Length));
+            string headers = string.Join(string.Empty, Enumerable.Repeat(columns, methodNames.Length).ToArray());
 
             string header =
                 "------------------------------------------------------------------" + Environment.NewLine +
