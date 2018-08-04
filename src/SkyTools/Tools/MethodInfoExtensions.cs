@@ -16,6 +16,7 @@ namespace SkyTools.Tools
         /// <param name="method">The method to get a string representation of.</param>
         /// <returns>A string representation of the method.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "Only applies to MethodInfo (depends on ToString() value)")]
         public static string ToFullString(this MethodInfo method)
         {
             if (method == null)

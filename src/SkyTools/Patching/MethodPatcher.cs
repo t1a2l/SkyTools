@@ -14,6 +14,7 @@ namespace SkyTools.Patching
     /// <summary>
     /// A class that uses Harmony library for redirecting the game's methods.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Patcher", Justification = "Reviewed")]
     public sealed class MethodPatcher
     {
         private readonly Patcher patcher;

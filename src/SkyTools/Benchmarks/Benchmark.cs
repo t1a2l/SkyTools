@@ -108,6 +108,7 @@ namespace SkyTools.Benchmarks
 
         /// <summary>Makes a snapshot of currently recorded performance data.
         /// This method should be called periodically while the benchmarking is running.</summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "Public interface, must be instance method")]
         public void MakeSnapshot()
         {
             BenchmarkPatch.DataCollector.MakeSnapshot();
