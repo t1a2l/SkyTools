@@ -59,6 +59,7 @@
     <Compile Include="Benchmarks\DataCollector.cs" />
     <Compile Include="Configuration\ConfigurationProvider.cs" />
     <Compile Include="Configuration\IConfiguration.cs" />
+    <Compile Include="GameTools\CameraHelper.cs" />
     <Compile Include="Localization\Constants.cs" />
     <Compile Include="Localization\ILocalizationProvider.cs" />
     <Compile Include="Localization\LocalizationProvider.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="UI\ConfigItemComboBoxAttribute.cs" />
     <Compile Include="UI\ConfigItemSliderAttribute.cs" />
     <Compile Include="UI\ConfigItemUIBaseAttribute.cs" />
+    <Compile Include="UI\CustomInfoPanelBase.cs" />
     <Compile Include="UI\IContainerViewItem.cs" />
     <Compile Include="UI\IValueViewItem.cs" />
     <Compile Include="UI\IViewItem.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="UI\Popup.cs" />
     <Compile Include="UI\SliderValueType.cs" />
     <Compile Include="UI\TitleBar.cs" />
+    <Compile Include="UI\UIComponentTools.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
