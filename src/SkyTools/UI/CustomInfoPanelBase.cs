@@ -36,8 +36,8 @@ namespace SkyTools.UI
         /// <summary>Disables the custom citizen info panel, if it is enabled.</summary>
         public void Disable()
         {
-            ItemsPanel = null;
             DisableCore();
+            ItemsPanel = null;
         }
 
         /// <summary>When implemented in derived classes, updates the custom information in this panel.</summary>
@@ -76,8 +76,15 @@ namespace SkyTools.UI
             }
 
             customComponent.isVisible = visible;
-            float delta = visible ? customComponent.height : -customComponent.height;
-            parent.height += delta;
+            float delta = customComponent.height + ItemsPanel.autoLayoutPadding.vertical;
+            if (visible)
+            {
+                parent.height += delta;
+            }
+            else
+            {
+                parent.height -= delta;
+            }
         }
 
         /// <summary>When overridden in derive classes, builds up the custom UI objects for the info panel.</summary>
