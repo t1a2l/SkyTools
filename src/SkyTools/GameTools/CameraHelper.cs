@@ -15,7 +15,7 @@ namespace SkyTools.GameTools
         /// Does nothing if the <paramref name="buildingId"/>is 0.</summary>
         /// <param name="buildingId">The ID of the building to navigate to.</param>
         /// <param name="zoomIn"><c>true</c> to zoom in to the building, <c>false</c> to not change the zoom.</param>
-        public static void NavigateToBuilding(ushort buildingId, bool zoomIn = true)
+        public static void NavigateToBuilding(ushort buildingId, bool zoomIn)
         {
             if (buildingId == 0)
             {

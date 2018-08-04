@@ -113,7 +113,7 @@ namespace SkyTools.Tools
         public static void DebugIf(bool condition, Enum category, string text)
         {
 #if DEBUG
-            if (ActiveCategories.Contains(category))
+            if (condition && ActiveCategories.Contains(category))
             {
                 DebugLog(text, category);
             }

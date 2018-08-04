@@ -42,6 +42,7 @@ namespace SkyTools.UI
 
         /// <summary>When implemented in derived classes, updates the custom information in this panel.</summary>
         /// <param name="citizenInstance">The game object instance to get the information from.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1045:DoNotPassTypesByReference", MessageId = "0#", Justification = "Performance")]
         public abstract void UpdateCustomInfo(ref InstanceID citizenInstance);
 
         /// <summary>Initializes this instance and builds up the custom UI objects.</summary>
@@ -58,18 +59,24 @@ namespace SkyTools.UI
         }
 
         /// <summary>Sets the custom panel's visibility in the info panel.</summary>
-        /// <param name="customPanel">The custom panel to set visibility of.</param>
+        /// <param name="customComponent">The custom UI component to set visibility of.</param>
         /// <param name="visible">if set to <c>true</c>, the custom panel must be visible.</param>
-        protected void SetCustomPanelVisibility(UIPanel customPanel, bool visible)
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="customComponent"/> is null.</exception>
+        protected void SetCustomPanelVisibility(UIComponent customComponent, bool visible)
         {
+            if (customComponent == null)
+            {
+                throw new ArgumentNullException(nameof(customComponent));
+            }
+
             UIComponent parent = ItemsPanel.parent;
-            if (parent == null || !parent.isVisible || customPanel.isVisible == visible)
+            if (parent == null || !parent.isVisible || customComponent.isVisible == visible)
             {
                 return;
             }
 
-            customPanel.isVisible = visible;
-            float delta = visible ? customPanel.height : -customPanel.height;
+            customComponent.isVisible = visible;
+            float delta = visible ? customComponent.height : -customComponent.height;
             parent.height += delta;
         }
 
