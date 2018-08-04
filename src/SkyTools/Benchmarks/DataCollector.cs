@@ -101,10 +101,12 @@ namespace SkyTools.Benchmarks
                         sb.Append(';');
                         sb.Append(data.Median);
                         sb.Append(';');
+                        sb.Append(data.Max);
+                        sb.Append(';');
                     }
                     else
                     {
-                        sb.Append(";;;");
+                        sb.Append(";;;;");
                     }
                 }
 
@@ -116,11 +118,12 @@ namespace SkyTools.Benchmarks
 
         private readonly struct MethodSnapshot
         {
-            private MethodSnapshot(int samplesCount, long average, long median)
+            private MethodSnapshot(int samplesCount, long average, long median, long max)
             {
                 SamplesCount = samplesCount;
                 Average = average;
                 Median = median;
+                Max = max;
             }
 
             public int SamplesCount { get; }
@@ -128,6 +131,8 @@ namespace SkyTools.Benchmarks
             public long Average { get; }
 
             public long Median { get; }
+
+            public long Max { get; }
 
             public static MethodSnapshot Calculate(long[] data)
             {
@@ -148,7 +153,19 @@ namespace SkyTools.Benchmarks
                     median = data[data.Length / 2];
                 }
 
-                return new MethodSnapshot(data.Length, (long)data.Average(), median);
+                long max = long.MinValue;
+                long avg = 0;
+                for (int i = 0; i < data.Length; ++i)
+                {
+                    if (data[i] > max)
+                    {
+                        max = data[i];
+                    }
+
+                    avg += data[i];
+                }
+
+                return new MethodSnapshot(data.Length, avg / data.Length, median, max);
             }
         }
 

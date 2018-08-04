@@ -18,6 +18,7 @@ namespace SkyTools.Benchmarks
     public sealed class Benchmark
     {
         private const string HarmonyId = "com.cities_skylines.dymanoid.skytools.benchmarks";
+
         private readonly List<IPatch> patches = new List<IPatch>();
         private MethodPatcher patcher;
         private bool isRunning;
@@ -117,18 +118,25 @@ namespace SkyTools.Benchmarks
         {
             if (patches.Count == 0)
             {
+                Log.Info("SkyTools benchmark has recorded no data. Make sure at least one snapshot has been created.");
                 return;
             }
 
             var methods = patches.Cast<BenchmarkPatch>().Select(p => p.Method).ToList();
+            string[] methodNames = methods.Select(m => m.ToFullString() + ";;;;").ToArray();
+
+            const string columns = "Count;Average;Median;Maximum;";
+            string headers = string.Concat(Enumerable.Repeat(columns, methodNames.Length));
 
             string header =
                 "------------------------------------------------------------------" + Environment.NewLine +
                 "-----                       SkyTools Benchmark             -------" + Environment.NewLine +
-                string.Join(";", methods.Select(m => m.ToFullString()).ToArray());
+                "------------------------------------------------------------------" + Environment.NewLine +
+                string.Join(";", methodNames) + Environment.NewLine +
+                columns + Environment.NewLine;
 
             string data = BenchmarkPatch.DataCollector.Dump(methods);
-            Log.Info(header + Environment.NewLine + data);
+            Log.Info(header + data);
         }
     }
 }
