@@ -6,7 +6,7 @@ namespace SkyTools.UI
     using ColossalFramework.UI;
 
     /// <summary>A helper class for the UI components.</summary>
-    internal static class UIComponentTools
+    public static class UIComponentTools
     {
         /// <summary>Creates a copy of the specified button and inserts it into the specified container item.</summary>
         /// <param name="template">The button to copy.</param>

@@ -9,7 +9,7 @@ namespace SkyTools.UI
 
     /// <summary>A base class for the customized world info panels.</summary>
     /// <typeparam name="T">The type of the game world info panel to customize.</typeparam>
-    internal abstract class CustomInfoPanelBase<T>
+    public abstract class CustomInfoPanelBase<T>
         where T : WorldInfoPanel
     {
         /// <summary>Initializes a new instance of the <see cref="CustomInfoPanelBase{T}"/> class.</summary>
