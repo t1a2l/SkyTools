@@ -33,6 +33,11 @@ namespace SkyTools.Benchmarks
         /// <param name="elapsed">The method execution time in ticks.</param>
         public void RecordSample(MethodInfo method, long elapsed)
         {
+            if (method == null)
+            {
+                return;
+            }
+
             lock (syncObject)
             {
                 if (!counters.TryGetValue(method, out MethodPerformance stats))
@@ -88,7 +93,7 @@ namespace SkyTools.Benchmarks
             {
                 foreach (MethodInfo method in methods)
                 {
-                    if (snapshot.Data.TryGetValue(method, out var data))
+                    if (snapshot.Data.TryGetValue(method, out MethodSnapshot data))
                     {
                         sb.Append(data.SamplesCount);
                         sb.Append(';');
@@ -149,7 +154,7 @@ namespace SkyTools.Benchmarks
 
         private sealed class Snapshot
         {
-            public Dictionary<MethodInfo, MethodSnapshot> Data { get; }
+            public Dictionary<MethodInfo, MethodSnapshot> Data { get; } = new Dictionary<MethodInfo, MethodSnapshot>();
         }
 
         private sealed class MethodPerformance
