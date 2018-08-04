@@ -123,7 +123,7 @@ namespace SkyTools.Benchmarks
             }
 
             var methods = patches.Cast<BenchmarkPatch>().Select(p => p.Method).ToList();
-            string[] methodNames = methods.Select(m => m.ToFullString() + ";;;;").ToArray();
+            string[] methodNames = methods.Select(m => m.ToFullString() + ";;;").ToArray();
 
             const string columns = "Count;Average;Median;Maximum;";
             string headers = string.Join(string.Empty, Enumerable.Repeat(columns, methodNames.Length).ToArray());
