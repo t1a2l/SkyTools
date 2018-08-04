@@ -160,7 +160,7 @@ namespace SkyTools.Benchmarks
         private sealed class MethodPerformance
         {
             private readonly long[] samples;
-            private int current = -1;
+            private int next = 0;
 
             public MethodPerformance(int averagingWindow)
             {
@@ -169,24 +169,23 @@ namespace SkyTools.Benchmarks
 
             public long[] GetSnapshot()
             {
-                int count = current + 1;
+                int count = next;
                 long[] result = new long[count];
                 if (count > 0)
                 {
                     Array.Copy(samples, result, count);
                 }
 
+                next = 0;
                 return result;
             }
 
             public void AddSample(long elapsed)
             {
-                if (++current == samples.Length)
+                if (next < samples.Length)
                 {
-                    current = 0;
+                    samples[next++] = elapsed;
                 }
-
-                samples[current] = elapsed;
             }
         }
     }
