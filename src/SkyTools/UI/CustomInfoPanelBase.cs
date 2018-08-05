@@ -12,6 +12,9 @@ namespace SkyTools.UI
     public abstract class CustomInfoPanelBase<T>
         where T : WorldInfoPanel
     {
+        private float originalItemsPanelHeight;
+        private float originalInfoPanelHeight;
+
         /// <summary>Initializes a new instance of the <see cref="CustomInfoPanelBase{T}"/> class.</summary>
         /// <param name="infoPanelName">Name of the game's panel object.</param>
         /// <exception cref="ArgumentException">
@@ -55,6 +58,8 @@ namespace SkyTools.UI
                 return false;
             }
 
+            originalItemsPanelHeight = ItemsPanel.height;
+            originalInfoPanelHeight = ItemsPanel.parent.height;
             return InitializeCore();
         }
 
@@ -76,15 +81,15 @@ namespace SkyTools.UI
             }
 
             customComponent.isVisible = visible;
-            float delta = customComponent.height + ItemsPanel.autoLayoutPadding.vertical;
-            if (visible)
+            ItemsPanel.PerformLayout();
+            UIComponent lastComponent = ItemsPanel.components[ItemsPanel.components.Count - 1];
+            float delta = lastComponent.relativePosition.y + lastComponent.height + ItemsPanel.autoLayoutPadding.vertical - originalItemsPanelHeight;
+            if (delta < 0)
             {
-                parent.height += delta;
+                delta = 0;
             }
-            else
-            {
-                parent.height -= delta;
-            }
+
+            parent.height = originalInfoPanelHeight + delta;
         }
 
         /// <summary>When overridden in derive classes, builds up the custom UI objects for the info panel.</summary>
