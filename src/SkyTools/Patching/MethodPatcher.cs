@@ -44,18 +44,27 @@ namespace SkyTools.Patching
         }
 
         /// <summary>Applies all patches this object knows about.</summary>
-        public void Apply()
+        /// <returns>A collection of successfully applied patches.</returns>
+        public HashSet<IPatch> Apply()
         {
             Revert();
 
-            int applied = 0;
+            var result = new HashSet<IPatch>();
             foreach (IPatch patch in patches)
             {
-                patch.ApplyPatch(patcher);
-                ++applied;
+                try
+                {
+                    patch.ApplyPatch(patcher);
+                    result.Add(patch);
+                }
+                catch (Exception ex)
+                {
+                    Log.Info($"Harmony (ID '{id}') method patch failed for {patch}: {ex}");
+                }
             }
 
-            Log.Info($"{applied} Harmony method patches with ID '{id}' successfully applied.");
+            Log.Info($"{result.Count} Harmony method patches with ID '{id}' successfully applied.");
+            return result;
         }
 
         /// <summary>Reverts all patches, if any applied.</summary>
