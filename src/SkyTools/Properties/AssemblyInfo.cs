@@ -18,3 +18,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
+
+[assembly: AssemblyVersion("1.3.0")]
