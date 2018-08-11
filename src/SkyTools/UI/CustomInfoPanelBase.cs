@@ -44,9 +44,9 @@ namespace SkyTools.UI
         }
 
         /// <summary>When implemented in derived classes, updates the custom information in this panel.</summary>
-        /// <param name="citizenInstance">The game object instance to get the information from.</param>
+        /// <param name="instance">The game object instance to get the information from.</param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1045:DoNotPassTypesByReference", MessageId = "0#", Justification = "Performance")]
-        public abstract void UpdateCustomInfo(ref InstanceID citizenInstance);
+        public abstract void UpdateCustomInfo(ref InstanceID instance);
 
         /// <summary>Initializes this instance and builds up the custom UI objects.</summary>
         /// <returns><c>true</c> on success; otherwise, <c>false</c>.</returns>
