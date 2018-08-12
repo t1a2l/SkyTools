@@ -35,8 +35,7 @@ namespace SkyTools.UI
                 throw new System.ArgumentNullException(nameof(localizationProvider));
             }
 
-            var content = Container as UIHelper;
-            if (content == null)
+            if (!(Container is UIHelper content))
             {
                 return;
             }

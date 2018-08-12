@@ -54,8 +54,7 @@ namespace SkyTools.UI
             tabButton.hoveredBgSprite = "SubBarButtonBaseHovered";
             tabButton.pressedBgSprite = "SubBarButtonBasePressed";
 
-            var tabContainer = tabStrip.tabContainer.components[tabStrip.tabCount - 1] as UIPanel;
-            if (tabContainer == null)
+            if (!(tabStrip.tabContainer.components[tabStrip.tabCount - 1] is UIPanel tabContainer))
             {
                 return null;
             }

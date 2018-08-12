@@ -10,6 +10,7 @@ namespace SkyTools.UI
     /// A base class for the attributes that define the configuration items layout on the mod's
     /// configuration page.
     /// </summary>
+    [AttributeUsage(AttributeTargets.Property)]
     public abstract class ConfigItemUIBaseAttribute : Attribute
     {
     }

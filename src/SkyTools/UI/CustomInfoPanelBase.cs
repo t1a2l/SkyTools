@@ -75,7 +75,7 @@ namespace SkyTools.UI
             }
 
             UIComponent parent = ItemsPanel.parent;
-            if (parent == null || !parent.isVisible || customComponent.isVisible == visible)
+            if (parent?.isVisible != true || customComponent.isVisible == visible)
             {
                 return;
             }

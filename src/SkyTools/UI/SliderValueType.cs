@@ -17,6 +17,6 @@ namespace SkyTools.UI
         Time,
 
         /// <summary>The duration value type. Displayed as hours and minutes.</summary>
-        Duration
+        Duration,
     }
 }

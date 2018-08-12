@@ -46,7 +46,7 @@ namespace SkyTools.Tools
 
         private enum InternalCategories
         {
-            Default
+            Default,
         }
 
         /// <summary>Sets up the logging for specified logging categories.</summary>

@@ -43,7 +43,7 @@ namespace SkyTools.Localization
             None,
             Success,
             Failure,
-            AlreadyLoaded
+            AlreadyLoaded,
         }
 
         /// <summary>Gets the current culture that is used for translation.</summary>

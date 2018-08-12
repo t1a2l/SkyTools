@@ -32,7 +32,7 @@ namespace SkyTools.Patching
                 throw new ArgumentException("The ID cannot be null or an empty string", nameof(id));
             }
 
-            if (patches == null || !patches.Any())
+            if (patches?.Any() != true)
             {
                 throw new ArgumentException("At least one patch is required");
             }

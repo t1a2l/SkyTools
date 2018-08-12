@@ -39,7 +39,7 @@ namespace SkyTools.Tools
             {
                 var attributes = new XmlAttributes
                 {
-                    XmlIgnore = true
+                    XmlIgnore = true,
                 };
 
                 attributes.XmlElements.Add(new XmlElementAttribute(property.Name));
