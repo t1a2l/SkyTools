@@ -74,6 +74,7 @@ namespace SkyTools.Tools
         /// <param name="category">The log category of this log entry.</param>
         /// <param name="text">The text to log.</param>
         [Conditional("DEBUG")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Redundancy", "RCS1163", Justification = "Conditional compilation")]
         public static void Debug(Enum category, string text)
         {
 #if DEBUG
@@ -92,6 +93,7 @@ namespace SkyTools.Tools
         /// <param name="gameTime">The current date and time in the game.</param>
         /// <param name="text">The text to log.</param>
         [Conditional("DEBUG")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Redundancy", "RCS1163", Justification = "Conditional compilation")]
         public static void Debug(Enum category, DateTime gameTime, string text)
         {
 #if DEBUG
@@ -110,6 +112,7 @@ namespace SkyTools.Tools
         /// <param name="category">The log category of this log entry.</param>
         /// <param name="text">The text to log.</param>
         [Conditional("DEBUG")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Redundancy", "RCS1163", Justification = "Conditional compilation")]
         public static void DebugIf(bool condition, Enum category, string text)
         {
 #if DEBUG
