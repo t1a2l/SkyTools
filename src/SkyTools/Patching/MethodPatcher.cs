@@ -114,7 +114,7 @@ namespace SkyTools.Patching
                     throw new ArgumentNullException(nameof(method));
                 }
 
-                harmony.RemovePatch(method, HarmonyPatchType.All, harmony.Id);
+                harmony.Unpatch(method, HarmonyPatchType.All, harmony.Id);
             }
         }
     }
