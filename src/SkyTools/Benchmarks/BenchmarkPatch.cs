@@ -49,7 +49,8 @@ namespace SkyTools.Benchmarks
             return Method;
         }
 
-#pragma warning disable SA1313 // Parameter names must begin with lower-case letter
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Redundancy", "RCS1213", Justification = "Harmony patch")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming Rules", "SA1313", Justification = "Harmony patch")]
         private static void Prefix(MethodInfo __originalMethod)
         {
             long started = Stopwatch.GetTimestamp();
@@ -64,6 +65,8 @@ namespace SkyTools.Benchmarks
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Redundancy", "RCS1213", Justification = "Harmony patch")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming Rules", "SA1313", Justification = "Harmony patch")]
         private static void Postfix(MethodInfo __originalMethod)
         {
             long stopped = Stopwatch.GetTimestamp();
@@ -86,6 +89,5 @@ namespace SkyTools.Benchmarks
             long elapsed = stopped - started;
             DataCollector.RecordSample(__originalMethod, elapsed);
         }
-#pragma warning restore SA1313 // Parameter names must begin with lower-case letter
     }
 }
