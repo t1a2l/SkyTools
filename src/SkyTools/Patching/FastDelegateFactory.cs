@@ -18,9 +18,9 @@ namespace SkyTools.Patching
     {
         /// <summary>
         /// Creates a delegate instance of the specified <typeparamref name="TDelegate"/> type that represents a method
-        /// of the <typeparamref name="TType"/> class. If the target method is a <typeparamref name="TType"/>'s instance
+        /// of the <paramref name="type"/>. If the target method is a <paramref name="type"/>'s instance
         /// method, the first parameter of the <typeparamref name="TDelegate"/> signature must be a reference to a
-        /// <typeparamref name="TType"/> instance.
+        /// <paramref name="type"/> instance.
         /// </summary>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="type"/> is null.</exception>
         /// <exception cref="ArgumentException">Thrown when <paramref name="name"/> is null or an empty string.</exception>
@@ -34,7 +34,7 @@ namespace SkyTools.Patching
         /// <param name="name">The method name to create a delegate instance for.</param>
         /// <param name="instanceMethod">True if the <typeparamref name="TDelegate"/> type represents an instance method.
         /// That means, the first parameter of the <typeparamref name="TDelegate"/> signature will be processed
-        /// as a reference to a <typeparamref name="TType"/> instance (<c>this</c> reference). Default is <c>true</c>.</param>
+        /// as a reference to a <paramref name="type"/> instance (<c>this</c> reference). Default is <c>true</c>.</param>
         /// <returns>An instance of the <typeparamref name="TDelegate"/> delegate that can be called directly.</returns>
         public static TDelegate Create<TDelegate>(Type type, string name, bool instanceMethod)
             where TDelegate : Delegate

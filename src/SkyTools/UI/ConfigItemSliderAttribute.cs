@@ -18,7 +18,6 @@ namespace SkyTools.UI
         /// <param name="min">The minimum slider value.</param>
         /// <param name="max">The maximum slider value.</param>
         /// <param name="step">The slider step value. Default is 1.</param>
-        /// <param name="valueType">The type of the value to display. Default is <see cref="SliderValueType.Percentage"/>.</param>
         /// <exception cref="ArgumentException">
         /// Thrown when the <paramref name="max"/> value is less or equal to the
         /// <paramref name="min"/> value.

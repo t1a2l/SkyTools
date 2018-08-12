@@ -14,7 +14,7 @@ namespace SkyTools.Tools
 
     /// <summary>
     /// Manages the logging. In 'Release' mode, only logs to the Unity's debug log.
-    /// Also, the <see cref="Debug(string)"/> method calls will be eliminated in this mode.
+    /// Also, the 'Log.Debug(...)' method calls will be eliminated in this mode.
     /// In 'Debug' mode logs additionally to a text file that is located on the Desktop.
     /// </summary>
     public static class Log
