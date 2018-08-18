@@ -62,7 +62,7 @@ namespace SkyTools.UI
             tabContainer.padding.top = 30;
             tabContainer.autoLayout = true;
             tabContainer.autoLayoutDirection = LayoutDirection.Vertical;
-            tabContainer.autoLayoutPadding.bottom = 20;
+            tabContainer.autoLayoutPadding.bottom = 16;
             tabContainer.autoLayoutPadding.left = 10;
             tabContainer.autoLayoutPadding.right = 10;
             return new CitiesTabItem(tabButton, new UIHelper(tabContainer), id);

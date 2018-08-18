@@ -7,12 +7,14 @@ namespace SkyTools.UI
     using ColossalFramework.UI;
     using ICities;
     using SkyTools.Localization;
+    using UnityEngine;
 
     /// <summary>A group view item.</summary>
     /// <seealso cref="CitiesContainerItemBase" />
     public sealed class CitiesGroupItem : CitiesContainerItemBase
     {
         private const string LabelName = "Label";
+        private const string ContentPanelName = "Content";
 
         /// <summary>Initializes a new instance of the <see cref="CitiesGroupItem"/> class.</summary>
         /// <param name="group">The game's group item that represents this container.</param>
@@ -24,6 +26,14 @@ namespace SkyTools.UI
         public CitiesGroupItem(UIHelperBase group, string id)
             : base(group, id)
         {
+            if ((group as UIHelper)?.self is UIPanel panel)
+            {
+                UIPanel contentPanel = panel.Find<UIPanel>(ContentPanelName);
+                if (contentPanel != null)
+                {
+                    panel.autoLayoutPadding = new RectOffset(10, 10, 0, 16);
+                }
+            }
         }
 
         /// <summary>Performs the actual view item translation.</summary>

@@ -16,6 +16,7 @@ namespace SkyTools.UI
     public sealed class CitiesComboBoxItem : CitiesViewItem<UIDropDown, int>
     {
         private const string LabelName = "Label";
+        private const float ComboBoxLabelWidth = 240f;
 
         private readonly IEnumerable<string> itemIds;
 
@@ -38,11 +39,20 @@ namespace SkyTools.UI
 
             UIComponent.width = 320;
 
-            var parentPanel = UIComponent.parent as UIPanel;
-            if (parentPanel != null)
+            if (!(UIComponent.parent is UIPanel parentPanel))
             {
-                parentPanel.autoLayoutDirection = LayoutDirection.Horizontal;
-                parentPanel.autoSize = true;
+                return;
+            }
+
+            parentPanel.autoLayoutDirection = LayoutDirection.Horizontal;
+            parentPanel.autoFitChildrenHorizontally = true;
+            parentPanel.autoFitChildrenVertically = true;
+
+            UILabel label = parentPanel.components.OfType<UILabel>().FirstOrDefault();
+            if (label != null)
+            {
+                label.width = ComboBoxLabelWidth;
+                label.padding.right = 10;
             }
         }
 

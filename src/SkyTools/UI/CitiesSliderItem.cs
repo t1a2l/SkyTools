@@ -6,6 +6,7 @@ namespace SkyTools.UI
 {
     using System;
     using System.Globalization;
+    using System.Linq;
     using System.Reflection;
     using ColossalFramework.UI;
     using ICities;
@@ -16,6 +17,7 @@ namespace SkyTools.UI
     {
         private const string LabelName = "Label";
         private const int SliderValueLabelPadding = 20;
+        private const float SliderLabelWidth = 240f;
 
         private readonly UILabel valueLabel;
         private readonly SliderValueType valueType;
@@ -53,13 +55,22 @@ namespace SkyTools.UI
             UIComponent.minValue = min;
             UIComponent.maxValue = max;
             UIComponent.stepSize = step;
+            UIComponent.width = 320;
             this.valueType = valueType;
             this.displayMultiplier = displayMultiplier;
             var parentPanel = UIComponent.parent as UIPanel;
             if (parentPanel != null)
             {
                 parentPanel.autoLayoutDirection = LayoutDirection.Horizontal;
-                parentPanel.autoSize = true;
+                parentPanel.autoFitChildrenHorizontally = true;
+                parentPanel.autoFitChildrenVertically = true;
+
+                UILabel label = parentPanel.components.OfType<UILabel>().FirstOrDefault();
+                if (label != null)
+                {
+                    label.width = SliderLabelWidth;
+                    label.padding.right = 10;
+                }
             }
 
             if (UIComponent.parent != null)
@@ -153,7 +164,7 @@ namespace SkyTools.UI
                     break;
 
                 case SliderValueType.Duration:
-                    TimeSpan ts = TimeSpan.FromHours(value);
+                    var ts = TimeSpan.FromHours(value);
                     valueString = $"{ts.Hours}:{ts.Minutes:00}";
                     break;
 
