@@ -78,13 +78,22 @@ namespace SkyTools.Localization
             return result == LoadingResult.Success;
         }
 
-        /// <summary>Forces the English-US culture to be applied if <see cref="CurrentCulture"/> is English.
-        /// When loading another language, this will be automatically reset back.</summary>
-        public void ForceEnglishUSCulture()
+        /// <summary>
+        /// Sets the state of the flag that forces the English-US culture to be applied if <see cref="CurrentCulture" />
+        /// is English. When loading another language, this will be automatically reset back.
+        /// </summary>
+        /// <param name="isEnabled"><c>true</c> to enable English-US formats, <c>false</c> to use English-GB.</param>
+        public void SetEnglishUSFormatsState(bool isEnabled)
         {
-            if (CurrentCulture.TwoLetterISOLanguageName == "en" && CurrentCulture.Name != "en-US")
+            if (CurrentCulture.TwoLetterISOLanguageName != "en")
             {
-                CurrentCulture = new CultureInfo("en-US");
+                return;
+            }
+
+            string locale = isEnabled ? "en-US" : "en-GB";
+            if (CurrentCulture.Name != locale)
+            {
+                CurrentCulture = new CultureInfo(locale);
             }
         }
 

@@ -27,8 +27,9 @@ namespace SkyTools.Localization
         /// <exception cref="System.ArgumentNullException">Thrown when the argument is null.</exception>
         IDictionary<string, string> GetOverriddenTranslations(string type);
 
-        /// <summary>Forces the English-US culture to be applied if <see cref="CurrentCulture"/> is English.
-        /// When loading another language, this will be automatically reset back.</summary>
-        void ForceEnglishUSCulture();
+        /// <summary>Sets the state of the flag that forces the English-US culture to be applied if <see cref="CurrentCulture"/>
+        /// is English. When loading another language, this will be automatically reset back.</summary>
+        /// <param name="isEnabled"><c>true</c> to enable English-US formats, <c>false</c> to use English-GB.</param>
+        void SetEnglishUSFormatsState(bool isEnabled);
     }
 }
