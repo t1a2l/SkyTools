@@ -78,6 +78,16 @@ namespace SkyTools.Localization
             return result == LoadingResult.Success;
         }
 
+        /// <summary>Forces the English-US culture to be applied if <see cref="CurrentCulture"/> is English.
+        /// When loading another language, this will be automatically reset back.</summary>
+        public void ForceEnglishUSCulture()
+        {
+            if (CurrentCulture.TwoLetterISOLanguageName == "en" && CurrentCulture.Name != "en-US")
+            {
+                CurrentCulture = new CultureInfo("en-US");
+            }
+        }
+
         /// <summary>Gets a dictionary representing the game's translations that should be overridden
         /// by this mod. Can return null.</summary>
         /// <param name="type">The overridden translations type string.</param>
@@ -124,7 +134,7 @@ namespace SkyTools.Localization
                     return "zh-CN";
 
                 default:
-                    return "en-US";
+                    return "en-GB";
             }
         }
 

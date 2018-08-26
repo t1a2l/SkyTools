@@ -26,5 +26,9 @@ namespace SkyTools.Localization
         /// <returns>A map of key-value pairs for translations to override, or null.</returns>
         /// <exception cref="System.ArgumentNullException">Thrown when the argument is null.</exception>
         IDictionary<string, string> GetOverriddenTranslations(string type);
+
+        /// <summary>Forces the English-US culture to be applied if <see cref="CurrentCulture"/> is English.
+        /// When loading another language, this will be automatically reset back.</summary>
+        void ForceEnglishUSCulture();
     }
 }
