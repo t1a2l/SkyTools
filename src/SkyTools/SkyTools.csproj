@@ -67,6 +67,7 @@
     <Compile Include="GameTools\CameraHelper.cs" />
     <Compile Include="Localization\Constants.cs" />
     <Compile Include="Localization\ILocalizationProvider.cs" />
+    <Compile Include="Localization\LocalizationExtractor.cs" />
     <Compile Include="Localization\LocalizationProvider.cs" />
     <Compile Include="Patching\FastDelegateFactory.cs" />
     <Compile Include="Patching\IPatch.cs" />
