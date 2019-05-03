@@ -53,7 +53,7 @@ namespace SkyTools.UI
             captionLabel.text = caption;
 
             closeButton.eventClick += CloseButtonClick;
-            closeButton.relativePosition = new Vector3(width - closeButton.width - (captionLabel.padding.horizontal * 2), 5);
+            closeButton.relativePosition = new Vector3(width - closeButton.width - captionLabel.padding.horizontal * 2, 5);
             closeButton.normalBgSprite = CloseButtonSprite;
             closeButton.hoveredBgSprite = CloseButtonHoverSprite;
             closeButton.pressedBgSprite = CloseButtonPressedSprite;

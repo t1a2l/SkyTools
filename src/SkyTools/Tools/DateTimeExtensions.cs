@@ -20,9 +20,7 @@ namespace SkyTools.Tools
         /// <returns>True if the <see cref="DateTime"/>'s day of week value is Saturday or Sunday;
         /// otherwise, false.</returns>
         public static bool IsWeekend(this DateTime dateTime)
-        {
-            return dateTime.DayOfWeek == DayOfWeek.Saturday || dateTime.DayOfWeek == DayOfWeek.Sunday;
-        }
+            => dateTime.DayOfWeek == DayOfWeek.Saturday || dateTime.DayOfWeek == DayOfWeek.Sunday;
 
         /// <summary>
         /// Determines whether this <see cref="DateTime"/> represents the Friday night or the Weekend time.

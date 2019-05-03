@@ -46,10 +46,7 @@ namespace SkyTools.UI
         /// <summary>
         /// Refreshes this view item by re-fetching its value from the bound configuration property.
         /// </summary>
-        public override void Refresh()
-        {
-            UIComponent.isChecked = Value;
-        }
+        public override void Refresh() => UIComponent.isChecked = Value;
 
         /// <summary>Creates the view item using the specified <see cref="UIHelperBase"/>.</summary>
         /// <param name="uiHelper">The UI helper to use for item creation.</param>

@@ -44,10 +44,7 @@ namespace SkyTools.Benchmarks
         /// Gets the <see cref="MethodInfo" /> instance of the method to patch.
         /// </summary>
         /// <returns>A <see cref="MethodInfo" /> instance of the method to patch.</returns>
-        protected override MethodInfo GetMethod()
-        {
-            return Method;
-        }
+        protected override MethodInfo GetMethod() => Method;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Redundancy", "RCS1213", Justification = "Harmony patch")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming Rules", "SA1313", Justification = "Harmony patch")]

@@ -179,9 +179,6 @@ namespace SkyTools.Configuration
             }
         }
 
-        private void OnChanged()
-        {
-            Changed?.Invoke(this, EventArgs.Empty);
-        }
+        private void OnChanged() => Changed?.Invoke(this, EventArgs.Empty);
     }
 }

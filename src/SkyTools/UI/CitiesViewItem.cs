@@ -125,9 +125,6 @@ namespace SkyTools.UI
 
         /// <summary>Updates the current configuration item value.</summary>
         /// <param name="newValue">The new item value.</param>
-        protected virtual void ValueChanged(TValue newValue)
-        {
-            Value = newValue;
-        }
+        protected virtual void ValueChanged(TValue newValue) => Value = newValue;
     }
 }

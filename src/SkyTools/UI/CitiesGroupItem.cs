@@ -38,6 +38,8 @@ namespace SkyTools.UI
 
         /// <summary>Performs the actual view item translation.</summary>
         /// <param name="localizationProvider">The localization provider to use for translation. Guaranteed to be not null.</param>
+        ///
+        /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="localizationProvider"/> is <c>null</c>.</exception>
         protected override void TranslateCore(ILocalizationProvider localizationProvider)
         {
             if (localizationProvider == null)

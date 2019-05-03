@@ -59,7 +59,7 @@ namespace SkyTools.Tools
                 return;
             }
 
-            foreach (Enum item in categories)
+            foreach (var item in categories)
             {
                 ActiveCategories.Add(item);
             }

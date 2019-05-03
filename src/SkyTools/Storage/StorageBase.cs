@@ -36,10 +36,7 @@ namespace SkyTools.Storage
         /// <summary>
         /// Called when the level is being saved.
         /// </summary>
-        public override void OnSaveData()
-        {
-            GameSaving?.Invoke(this, EventArgs.Empty);
-        }
+        public override void OnSaveData() => GameSaving?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// Called when an instance of this class is being initialized by the game engine.
