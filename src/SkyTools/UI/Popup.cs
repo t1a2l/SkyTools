@@ -36,7 +36,7 @@ namespace SkyTools.UI
             }
 
             Popup popup = parent.AddUIComponent<Popup>();
-            popup.popupPosition = new Vector2(parent.relativePosition.x + (parent.width / 2), parent.relativePosition.y);
+            popup.popupPosition = new Vector2(parent.relativePosition.x + parent.width / 2, parent.relativePosition.y);
             popup.caption = caption ?? string.Empty;
             popup.text = text ?? string.Empty;
             popup.eventVisibilityChanged += popup.PopupVisibilityChanged;
@@ -69,9 +69,7 @@ namespace SkyTools.UI
         }
 
         private void PopupSizeChanged(UIComponent component, Vector2 value)
-        {
-            relativePosition = new Vector3(popupPosition.x, popupPosition.y - height);
-        }
+            => relativePosition = new Vector3(popupPosition.x, popupPosition.y - height);
 
         private void PopupVisibilityChanged(UIComponent component, bool value)
         {

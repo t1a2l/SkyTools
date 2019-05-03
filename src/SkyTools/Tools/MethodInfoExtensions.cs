@@ -26,12 +26,7 @@ namespace SkyTools.Tools
 
             string result = method.ToString();
             int spaceIndex = result.IndexOf(' ');
-            if (spaceIndex < 0)
-            {
-                return result;
-            }
-
-            return result.Insert(spaceIndex + 1, method.ReflectedType.Name + ".");
+            return spaceIndex < 0 ? result : result.Insert(spaceIndex + 1, method.ReflectedType.Name + ".");
         }
     }
 }

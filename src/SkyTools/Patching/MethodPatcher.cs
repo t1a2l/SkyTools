@@ -50,7 +50,7 @@ namespace SkyTools.Patching
             Revert();
 
             var result = new HashSet<IPatch>();
-            foreach (IPatch patch in patches)
+            foreach (var patch in patches)
             {
                 try
                 {
@@ -70,7 +70,7 @@ namespace SkyTools.Patching
         /// <summary>Reverts all patches, if any applied.</summary>
         public void Revert()
         {
-            foreach (IPatch patch in patches)
+            foreach (var patch in patches)
             {
                 try
                 {

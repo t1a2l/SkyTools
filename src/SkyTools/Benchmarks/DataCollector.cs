@@ -6,7 +6,6 @@ namespace SkyTools.Benchmarks
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Reflection;
     using System.Text;
 
@@ -68,14 +67,14 @@ namespace SkyTools.Benchmarks
             var snapshotData = new Dictionary<MethodInfo, long[]>();
             lock (syncObject)
             {
-                foreach (KeyValuePair<MethodInfo, MethodPerformance> item in counters)
+                foreach (var item in counters)
                 {
                     snapshotData[item.Key] = item.Value.GetSnapshot();
                 }
             }
 
             var snapshot = new Snapshot();
-            foreach (KeyValuePair<MethodInfo, long[]> item in snapshotData)
+            foreach (var item in snapshotData)
             {
                 snapshot.Data[item.Key] = MethodSnapshot.Calculate(item.Value);
             }
@@ -89,9 +88,9 @@ namespace SkyTools.Benchmarks
         public string Dump(IEnumerable<MethodInfo> methods)
         {
             var sb = new StringBuilder(1024);
-            foreach (Snapshot snapshot in snapshots)
+            foreach (var snapshot in snapshots)
             {
-                foreach (MethodInfo method in methods)
+                foreach (var method in methods)
                 {
                     if (snapshot.Data.TryGetValue(method, out MethodSnapshot data))
                     {
@@ -177,7 +176,7 @@ namespace SkyTools.Benchmarks
         private sealed class MethodPerformance
         {
             private readonly long[] samples;
-            private int next = 0;
+            private int next;
 
             public MethodPerformance(int averagingWindow)
             {

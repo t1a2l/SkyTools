@@ -35,7 +35,7 @@ namespace SkyTools.Tools
 
             var result = new XmlAttributeOverrides();
 
-            foreach (PropertyInfo property in properties)
+            foreach (var property in properties)
             {
                 var attributes = new XmlAttributes
                 {

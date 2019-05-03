@@ -17,8 +17,6 @@ namespace SkyTools.UI
         /// <param name="caption">The caption of the message to display.</param>
         /// <param name="message">The message text.</param>
         public static void Show(string caption, string message)
-        {
-            UIView.library.ShowModal<ExceptionPanel>(DialogPanelName).SetMessage(caption ?? string.Empty, message ?? string.Empty, false);
-        }
+            => UIView.library.ShowModal<ExceptionPanel>(DialogPanelName).SetMessage(caption ?? string.Empty, message ?? string.Empty, false);
     }
 }

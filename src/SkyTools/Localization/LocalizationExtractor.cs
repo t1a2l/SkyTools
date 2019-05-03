@@ -42,7 +42,7 @@ namespace SkyTools.Localization
 
             using (var sw = new StreamWriter(targetPath))
             {
-                foreach (FieldInfo constant in constants)
+                foreach (var constant in constants)
                 {
                     string key = (string)constant.GetValue(null);
                     sw.WriteLine($"<translation id=\"{key}\" value=\"{Locale.Get(key)}\"/>");
@@ -51,8 +51,6 @@ namespace SkyTools.Localization
         }
 
         private static IEnumerable<FieldInfo> GetConstants(Type type)
-        {
-            return type.GetFields(BindingFlags.Public | BindingFlags.Static).Where(fi => fi.IsLiteral && !fi.IsInitOnly);
-        }
+            => type.GetFields(BindingFlags.Public | BindingFlags.Static).Where(fi => fi.IsLiteral && !fi.IsInitOnly);
     }
 }
