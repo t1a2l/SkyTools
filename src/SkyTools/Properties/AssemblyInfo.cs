@@ -19,4 +19,4 @@ using System.Runtime.InteropServices;
 
 [assembly: ComVisible(false)]
 
-[assembly: AssemblyVersion("1.7.2")]
+[assembly: AssemblyVersion("1.8.0")]

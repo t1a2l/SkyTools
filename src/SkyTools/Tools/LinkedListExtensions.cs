@@ -55,5 +55,39 @@ namespace SkyTools.Tools
 
             return null;
         }
+
+        /// <summary>
+        /// Copies the contents of the linked list to the specified <paramref name="target"/> collection.
+        /// </summary>
+        /// <typeparam name="T">The type of the items in the linked list.</typeparam>
+        ///
+        /// <param name="list">The linked list to copy items from.</param>
+        /// <param name="target">The collection to store the items in.</param>
+        ///
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="list"/> or <paramref name="target"/> is <c>null</c>.</exception>
+        public static void CopyTo<T>(this LinkedList<T> list, ICollection<T> target)
+        {
+            if (list == null)
+            {
+                throw new ArgumentNullException(nameof(list));
+            }
+
+            if (target == null)
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
+
+            if (list.Count == 0)
+            {
+                return;
+            }
+
+            LinkedListNode<T> node = list.First;
+            while (node != null)
+            {
+                target.Add(node.Value);
+                node = node.Next;
+            }
+        }
     }
 }
