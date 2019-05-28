@@ -13,7 +13,7 @@ namespace SkyTools.Tools
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Git", Justification = "Reviewed")]
     public static class GitVersion
     {
-        private const string GitVersionTypeName = ".GitVersionInformation";
+        private const string GitVersionTypeName = "GitVersionInformation";
         private const string VersionFieldName = "FullSemVer";
 
         /// <summary>
@@ -35,7 +35,10 @@ namespace SkyTools.Tools
                 throw new ArgumentNullException(nameof(assembly));
             }
 
-            Type gitVersionInformationType = assembly.GetType(assembly.GetName().Name + GitVersionTypeName);
+            Type gitVersionInformationType =
+                assembly.GetType(GitVersionTypeName)
+                ?? assembly.GetType($"{assembly.GetName().Name}.{GitVersionTypeName}");
+
             if (gitVersionInformationType == null)
             {
                 Log.Error("Attempting to retrieve the assembly version of an assembly that is built without GitVersion support.");
