@@ -5,12 +5,15 @@
 namespace SkyTools.Tools
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics;
+
+#if DEBUG
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Text;
     using System.Timers;
+#endif
 
     /// <summary>
     /// Manages the logging. In 'Release' mode, only logs to the Unity's debug log.
