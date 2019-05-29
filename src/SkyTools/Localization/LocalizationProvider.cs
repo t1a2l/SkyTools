@@ -116,8 +116,12 @@ namespace SkyTools.Localization
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "No security issues here")]
         private static string GetLocaleNameFromLanguage(string language)
         {
-            switch (language.ToLowerInvariant())
+            language = language.ToLowerInvariant();
+            switch (language)
             {
+                case "en":
+                    return "en-GB";
+
                 case "de":
                     return "de-DE";
 
@@ -141,10 +145,12 @@ namespace SkyTools.Localization
 
                 case "zh":
                     return "zh-CN";
-
-                default:
-                    return "en-GB";
             }
+
+            language += "-";
+            var specificCultures = CultureInfo.GetCultures(CultureTypes.SpecificCultures);
+            var culture = Array.Find(specificCultures, c => c.Name.StartsWith(language));
+            return culture?.Name ?? "en-GB";
         }
 
         private LoadingResult Load(string language)
