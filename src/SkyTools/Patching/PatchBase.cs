@@ -42,15 +42,17 @@ namespace SkyTools.Patching
                 return;
             }
 
-            MethodInfo prefix = GetType().GetMethod("Prefix", BindingFlags.Static | BindingFlags.NonPublic);
-            MethodInfo postfix = GetType().GetMethod("Postfix", BindingFlags.Static | BindingFlags.NonPublic);
+            var thisType = GetType();
+            MethodInfo prefix = thisType.GetMethod("Prefix", BindingFlags.Static | BindingFlags.NonPublic);
+            MethodInfo postfix = thisType.GetMethod("Postfix", BindingFlags.Static | BindingFlags.NonPublic);
+            MethodInfo transform = thisType.GetMethod("Transform", BindingFlags.Static | BindingFlags.NonPublic);
 
-            if (prefix == null && postfix == null)
+            if (prefix == null && postfix == null && transform == null)
             {
-                throw new InvalidOperationException("At least one of the 'Prefix' and 'Postfix' methods must be defined");
+                throw new InvalidOperationException("At least one of the methods must be defined: 'Prefix', 'Postfix', 'Transform'.");
             }
 
-            patcher.ApplyPatch(method, prefix, postfix);
+            patcher.ApplyPatch(method, prefix, postfix, transform);
         }
 
         /// <summary>

@@ -14,11 +14,13 @@ namespace SkyTools.Patching
         /// <param name="method">The method to patch.</param>
         /// <param name="prefixCall">The prefix method to call before the <paramref name="method"/>. Can be null.</param>
         /// <param name="postfixCall">The postfix method to call after the <paramref name="method"/>. Can be null.</param>
+        /// <param name="transformCall">The transform method called to process the IL code of the <paramref name="method"/>. Can be null.</param>
         /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="method"/> is null.</exception>
         /// <exception cref="System.ArgumentException">
-        /// Thrown when both <paramref name="prefixCall"/> and <paramref name="postfixCall"/> are null.
+        /// Thrown when all three called methods are null (<paramref name="prefixCall"/>, <paramref name="postfixCall"/>,
+        /// <paramref name="transformCall"/>).
         /// </exception>
-        void ApplyPatch(MethodInfo method, MethodInfo prefixCall, MethodInfo postfixCall);
+        void ApplyPatch(MethodInfo method, MethodInfo prefixCall, MethodInfo postfixCall, MethodInfo transformCall);
 
         /// <summary>Reverts a patch from the specified <paramref name="method"/>.</summary>
         /// <param name="method">The method to patch.</param>

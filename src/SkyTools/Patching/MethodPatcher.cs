@@ -92,19 +92,22 @@ namespace SkyTools.Patching
                 this.harmony = harmony;
             }
 
-            public void ApplyPatch(MethodInfo method, MethodInfo prefixCall, MethodInfo postfixCall)
+            public void ApplyPatch(MethodInfo method, MethodInfo prefixCall, MethodInfo postfixCall, MethodInfo transformCall)
             {
                 if (method == null)
                 {
                     throw new ArgumentNullException(nameof(method));
                 }
 
-                if (prefixCall == null && postfixCall == null)
+                if (prefixCall == null && postfixCall == null && transformCall == null)
                 {
-                    throw new ArgumentException($"Both {nameof(prefixCall)} and {nameof(postfixCall)} cannot be null at the same time.");
+                    throw new ArgumentException($"All call methods ({nameof(prefixCall)}, {nameof(postfixCall)}, {nameof(transformCall)}) cannot be null at the same time.");
                 }
 
-                harmony.Patch(method, new HarmonyMethod(prefixCall), new HarmonyMethod(postfixCall));
+                var prefix = prefixCall == null ? null : new HarmonyMethod(prefixCall);
+                var postfix = postfixCall == null ? null : new HarmonyMethod(postfixCall);
+                var transpiler = transformCall == null ? null : new HarmonyMethod(transformCall);
+                harmony.Patch(method, prefix, postfix, transpiler);
             }
 
             public void RevertPatch(MethodInfo method)
