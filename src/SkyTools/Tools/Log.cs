@@ -131,6 +131,7 @@ namespace SkyTools.Tools
         /// </summary>
         ///
         /// <param name="text">The text to log.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0022", Justification = "Conditional compilation")]
         public static void Info(string text)
         {
             UnityEngine.Debug.Log(text);
@@ -145,6 +146,7 @@ namespace SkyTools.Tools
         /// </summary>
         ///
         /// <param name="text">The text to log.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0022", Justification = "Conditional compilation")]
         public static void Warning(string text)
         {
             UnityEngine.Debug.LogWarning(text);
@@ -159,6 +161,7 @@ namespace SkyTools.Tools
         /// </summary>
         ///
         /// <param name="text">The text to log.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0022", Justification = "Conditional compilation")]
         public static void Error(string text)
         {
             UnityEngine.Debug.LogError(text);
