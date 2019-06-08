@@ -23,7 +23,8 @@ namespace SkyTools.Tools
     public static class Log
     {
 #if DEBUG
-        private const int FileWriteInterval = 1000; // ms
+        /// <summary>File write interval in milliseconds.</summary>
+        private const int FileWriteInterval = 1000;
         private const string LogFileName = "SkyTools.log";
 
         private static readonly HashSet<Enum> ActiveCategories = new HashSet<Enum>();
@@ -34,8 +35,10 @@ namespace SkyTools.Tools
         private static readonly Timer FlushTimer = new Timer(FileWriteInterval) { AutoReset = false };
         private static readonly string LogFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), LogFileName);
 
-        // Note: the official Unity 5 docs state that the ThreadStaticAttribute will cause the engine to crash.
-        // However, this doesn't occur on my system. Anyway, this is only compiled in debug builds and won't affect the mod users.
+        /// <summary>
+        /// Note: the official Unity 5 docs state that the ThreadStaticAttribute will cause the engine to crash.
+        /// However, this doesn't occur on my system. Anyway, this is only compiled in debug builds and won't affect the mod users.
+        /// </summary>
         [ThreadStatic]
         private static StringBuilder messageBuilder;
 
