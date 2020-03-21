@@ -48,7 +48,7 @@ namespace SkyTools.UI
             parentPanel.autoFitChildrenHorizontally = true;
             parentPanel.autoFitChildrenVertically = true;
 
-            UILabel label = parentPanel.components.OfType<UILabel>().FirstOrDefault();
+            var label = parentPanel.components.OfType<UILabel>().FirstOrDefault();
             if (label != null)
             {
                 label.width = ComboBoxLabelWidth;
@@ -68,7 +68,7 @@ namespace SkyTools.UI
 
             UIComponent.tooltip = localizationProvider.Translate(UIComponent.name + Constants.Tooltip);
 
-            UILabel label = UIComponent.parent?.Find<UILabel>(LabelName);
+            var label = UIComponent.parent?.Find<UILabel>(LabelName);
             if (label != null)
             {
                 label.text = localizationProvider.Translate(UIComponent.name);

@@ -212,9 +212,9 @@ namespace SkyTools.Tools
 
             try
             {
-                using (StreamWriter writer = File.AppendText(LogFilePath))
+                using (var writer = File.AppendText(LogFilePath))
                 {
-                    foreach (var line in storageCopy)
+                    foreach (string line in storageCopy)
                     {
                         writer.WriteLine(line);
                     }

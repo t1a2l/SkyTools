@@ -36,7 +36,7 @@ namespace SkyTools.UI
                 throw new ArgumentException("The button name cannot be null or an empty string.", nameof(name));
             }
 
-            UIButton result = container.AddUIComponent<UIButton>();
+            var result = container.AddUIComponent<UIButton>();
             result.name = name;
             result.height = template.height;
             result.width = template.width;
@@ -85,7 +85,7 @@ namespace SkyTools.UI
                 throw new ArgumentException("The label name cannot be null or an emtpy string.", nameof(name));
             }
 
-            UILabel result = container.AddUIComponent<UILabel>();
+            var result = container.AddUIComponent<UILabel>();
             result.autoSize = true;
             result.name = name;
             result.padding = template.padding;
@@ -117,7 +117,7 @@ namespace SkyTools.UI
                 throw new ArgumentNullException(nameof(template));
             }
 
-            UIPanel result = container.AddUIComponent<UIPanel>();
+            var result = container.AddUIComponent<UIPanel>();
             result.zOrder = template.zOrder;
             result.autoLayoutDirection = template.autoLayoutDirection;
             result.autoLayoutStart = template.autoLayoutStart;

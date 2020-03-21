@@ -56,7 +56,7 @@ namespace SkyTools.UI
 
             Id = id;
 
-            TItem component = CreateItem(uiHelper, Value);
+            var component = CreateItem(uiHelper, Value);
             component.name = id;
             UIComponent = component;
         }

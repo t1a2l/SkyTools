@@ -39,7 +39,7 @@ namespace SkyTools.Benchmarks
 
             lock (syncObject)
             {
-                if (!counters.TryGetValue(method, out MethodPerformance stats))
+                if (!counters.TryGetValue(method, out var stats))
                 {
                     stats = new MethodPerformance(averagingWindow);
                     counters.Add(method, stats);
@@ -92,7 +92,7 @@ namespace SkyTools.Benchmarks
             {
                 foreach (var method in methods)
                 {
-                    if (snapshot.Data.TryGetValue(method, out MethodSnapshot data))
+                    if (snapshot.Data.TryGetValue(method, out var data))
                     {
                         sb.Append(data.SamplesCount);
                         sb.Append(';');

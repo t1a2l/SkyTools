@@ -36,7 +36,7 @@ namespace SkyTools.UI
                 throw new ArgumentException("The tab item's id cannot be null or an empty string", nameof(id));
             }
 
-            UIButton tabButton = tabStrip.AddTab();
+            var tabButton = tabStrip.AddTab();
             if (tabButton == null)
             {
                 return null;

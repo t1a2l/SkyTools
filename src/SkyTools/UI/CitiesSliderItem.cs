@@ -65,7 +65,7 @@ namespace SkyTools.UI
                 parentPanel.autoFitChildrenHorizontally = true;
                 parentPanel.autoFitChildrenVertically = true;
 
-                UILabel label = parentPanel.components.OfType<UILabel>().FirstOrDefault();
+                var label = parentPanel.components.OfType<UILabel>().FirstOrDefault();
                 if (label != null)
                 {
                     label.width = SliderLabelWidth;
@@ -94,7 +94,7 @@ namespace SkyTools.UI
                 throw new ArgumentNullException(nameof(localizationProvider));
             }
 
-            UIComponent panel = UIComponent.parent;
+            var panel = UIComponent.parent;
             if (panel == null)
             {
                 return;
@@ -102,7 +102,7 @@ namespace SkyTools.UI
 
             panel.tooltip = localizationProvider.Translate(UIComponent.name + Constants.Tooltip);
 
-            UILabel label = panel.Find<UILabel>(LabelName);
+            var label = panel.Find<UILabel>(LabelName);
             if (label != null)
             {
                 label.text = localizationProvider.Translate(UIComponent.name);

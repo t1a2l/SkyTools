@@ -43,9 +43,9 @@ namespace SkyTools.Patching
             }
 
             var thisType = GetType();
-            MethodInfo prefix = thisType.GetMethod("Prefix", BindingFlags.Static | BindingFlags.NonPublic);
-            MethodInfo postfix = thisType.GetMethod("Postfix", BindingFlags.Static | BindingFlags.NonPublic);
-            MethodInfo transform = thisType.GetMethod("Transform", BindingFlags.Static | BindingFlags.NonPublic);
+            var prefix = thisType.GetMethod("Prefix", BindingFlags.Static | BindingFlags.NonPublic);
+            var postfix = thisType.GetMethod("Postfix", BindingFlags.Static | BindingFlags.NonPublic);
+            var transform = thisType.GetMethod("Transform", BindingFlags.Static | BindingFlags.NonPublic);
 
             if (prefix == null && postfix == null && transform == null)
             {
@@ -68,7 +68,7 @@ namespace SkyTools.Patching
                 throw new ArgumentNullException(nameof(patcher));
             }
 
-            MethodInfo patchedMethod = method ?? GetMethod();
+            var patchedMethod = method ?? GetMethod();
             if (patchedMethod != null)
             {
                 patcher.RevertPatch(patchedMethod);

@@ -25,7 +25,7 @@ namespace SkyTools.GameTools
             InstanceID instance = default;
             instance.Building = buildingId;
 
-            Vector3 buildingPosition = BuildingManager.instance.m_buildings.m_buffer[buildingId].m_position;
+            var buildingPosition = BuildingManager.instance.m_buildings.m_buffer[buildingId].m_position;
             ToolsModifierControl.cameraController.SetTarget(instance, buildingPosition, zoomIn);
         }
     }

@@ -35,7 +35,7 @@ namespace SkyTools.Tools
                 throw new ArgumentNullException(nameof(assembly));
             }
 
-            Type gitVersionInformationType =
+            var gitVersionInformationType =
                 assembly.GetType(GitVersionTypeName)
                 ?? assembly.GetType($"{assembly.GetName().Name}.{GitVersionTypeName}");
 
@@ -45,7 +45,7 @@ namespace SkyTools.Tools
                 return "?";
             }
 
-            FieldInfo versionField = gitVersionInformationType.GetField(VersionFieldName);
+            var versionField = gitVersionInformationType.GetField(VersionFieldName);
             if (versionField == null)
             {
                 Log.Error($"Internal error: the '{GitVersionTypeName}' type has no field '{VersionFieldName}'.");

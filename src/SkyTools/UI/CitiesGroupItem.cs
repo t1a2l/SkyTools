@@ -28,7 +28,7 @@ namespace SkyTools.UI
         {
             if ((group as UIHelper)?.self is UIPanel panel)
             {
-                UIPanel contentPanel = panel.Find<UIPanel>(ContentPanelName);
+                var contentPanel = panel.Find<UIPanel>(ContentPanelName);
                 if (contentPanel != null)
                 {
                     panel.autoLayoutPadding = new RectOffset(10, 10, 0, 16);
@@ -52,13 +52,13 @@ namespace SkyTools.UI
                 return;
             }
 
-            UIComponent panel = ((UIComponent)content.self).parent;
+            var panel = ((UIComponent)content.self).parent;
             if (panel == null)
             {
                 return;
             }
 
-            UILabel label = panel.Find<UILabel>(LabelName);
+            var label = panel.Find<UILabel>(LabelName);
             if (label != null)
             {
                 label.text = localizationProvider.Translate(Id);

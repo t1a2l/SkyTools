@@ -27,7 +27,7 @@ namespace SkyTools.Localization
                 throw new ArgumentException("The target path cannot be null or an empty string", nameof(targetPath));
             }
 
-            IEnumerable<FieldInfo> constants = GetConstants(typeof(LocaleID))
+            var constants = GetConstants(typeof(LocaleID))
                 .Where(fi => fi.FieldType == typeof(string));
 
             if (!string.IsNullOrEmpty(attributeText))

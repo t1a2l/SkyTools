@@ -69,7 +69,7 @@ namespace SkyTools.Localization
                 return false;
             }
 
-            LoadingResult result = Load(language);
+            var result = Load(language);
             if (result == LoadingResult.Failure)
             {
                 result = Load("en");
@@ -109,7 +109,7 @@ namespace SkyTools.Localization
                 throw new ArgumentNullException(nameof(type));
             }
 
-            overrides.TryGetValue(type, out Dictionary<string, string> result);
+            overrides.TryGetValue(type, out var result);
             return result;
         }
 
@@ -210,7 +210,7 @@ namespace SkyTools.Localization
                 return;
             }
 
-            if (!overrides.TryGetValue(type, out Dictionary<string, string> typeOverrides))
+            if (!overrides.TryGetValue(type, out var typeOverrides))
             {
                 typeOverrides = new Dictionary<string, string>();
                 overrides[type] = typeOverrides;

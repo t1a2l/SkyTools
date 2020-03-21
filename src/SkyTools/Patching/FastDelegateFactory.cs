@@ -49,7 +49,7 @@ namespace SkyTools.Patching
                 throw new ArgumentException("The method name cannot be null or empty string.");
             }
 
-            MethodInfo methodInfo = GetMethodInfo<TDelegate>(type, name, instanceMethod);
+            var methodInfo = GetMethodInfo<TDelegate>(type, name, instanceMethod);
             return (TDelegate)Delegate.CreateDelegate(typeof(TDelegate), methodInfo);
         }
 
@@ -61,7 +61,7 @@ namespace SkyTools.Patching
                 parameters = parameters.Skip(1);
             }
 
-            MethodInfo methodInfo = type.GetMethod(
+            var methodInfo = type.GetMethod(
                 name,
                 BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic,
                 null,

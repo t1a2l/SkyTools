@@ -27,9 +27,9 @@ namespace SkyTools.Tools
                 throw new ArgumentNullException(nameof(item));
             }
 
-            Type itemType = item.GetType();
+            var itemType = item.GetType();
 
-            IEnumerable<PropertyInfo> properties = itemType
+            var properties = itemType
                 .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .Where(p => p.GetCustomAttributes(typeof(ObsoleteAttribute), false).Length != 0);
 

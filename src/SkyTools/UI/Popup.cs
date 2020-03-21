@@ -35,7 +35,7 @@ namespace SkyTools.UI
                 throw new ArgumentNullException(nameof(parent));
             }
 
-            Popup popup = parent.AddUIComponent<Popup>();
+            var popup = parent.AddUIComponent<Popup>();
             popup.popupPosition = new Vector2(parent.relativePosition.x + parent.width / 2, parent.relativePosition.y);
             popup.caption = caption ?? string.Empty;
             popup.text = text ?? string.Empty;

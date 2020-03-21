@@ -42,7 +42,7 @@ namespace SkyTools.Tools
                 return null;
             }
 
-            LinkedListNode<T> node = list.First;
+            var node = list.First;
             while (node != null)
             {
                 if (predicate(node.Value))
@@ -82,7 +82,7 @@ namespace SkyTools.Tools
                 return;
             }
 
-            LinkedListNode<T> node = list.First;
+            var node = list.First;
             while (node != null)
             {
                 target.Add(node.Value);

@@ -30,7 +30,7 @@ namespace SkyTools.UI
             {
                 tabStrip = root.AddUIComponent<UITabstrip>();
 
-                UITabContainer tabContainer = root.AddUIComponent<UITabContainer>();
+                var tabContainer = root.AddUIComponent<UITabContainer>();
                 tabContainer.width = root.width - 20f;
                 tabContainer.height = root.height - tabStrip.height - 20f;
 

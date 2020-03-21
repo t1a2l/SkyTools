@@ -74,7 +74,7 @@ namespace SkyTools.UI
                 throw new ArgumentNullException(nameof(customComponent));
             }
 
-            UIComponent parent = ItemsPanel.parent;
+            var parent = ItemsPanel.parent;
             if (parent?.isVisible != true || customComponent.isVisible == visible)
             {
                 return;
@@ -82,7 +82,7 @@ namespace SkyTools.UI
 
             customComponent.isVisible = visible;
             ItemsPanel.PerformLayout();
-            UIComponent lastComponent = ItemsPanel.components[ItemsPanel.components.Count - 1];
+            var lastComponent = ItemsPanel.components[ItemsPanel.components.Count - 1];
             float delta = lastComponent.relativePosition.y + lastComponent.height + ItemsPanel.autoLayoutPadding.vertical - originalItemsPanelHeight;
             if (delta < 0)
             {
@@ -108,7 +108,7 @@ namespace SkyTools.UI
                 return null;
             }
 
-            T infoPanel = panelGameObject.GetComponent<T>();
+            var infoPanel = panelGameObject.GetComponent<T>();
             if (infoPanel == null)
             {
                 Debug.LogWarning($"Failed to customize the info panel '{infoPanelName}'. No game object's component of type '{typeof(T).Name}' found.");
