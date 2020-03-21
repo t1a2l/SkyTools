@@ -1,50 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F83D96EF-857A-4AA4-8C23-7D258DAD777D}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SkyTools</RootNamespace>
-    <AssemblyName>SkyTools</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <TargetFramework>net35</TargetFramework>
+    <AssemblyTitle>SkyTools</AssemblyTitle>
+    <Product>SkyTools</Product>
+    <Description>Common tools for Cities: Skylines game mods</Description>
+    <Copyright>Copyright © 2018-2020, dymanoid</Copyright>
+    <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
+    <DocumentationFile>..\bin\$(Configuration)\SkyTools.xml</DocumentationFile>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>..\bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>SkyTools.ruleset</CodeAnalysisRuleSet>
-    <LangVersion>7.3</LangVersion>
-    <DocumentationFile>..\bin\Debug\SkyTools.xml</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>..\bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>SkyTools.ruleset</CodeAnalysisRuleSet>
-    <LangVersion>7.3</LangVersion>
-    <DocumentationFile>..\bin\Release\SkyTools.xml</DocumentationFile>
-  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblySearchPaths>
+       $(AssemblySearchPaths);
+       $(CitiesSkylinesBinaries);
+    </AssemblySearchPaths>
+</PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)packages\Lib.Harmony.1.2.0.1\lib\net35\0Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
     <Reference Include="Assembly-CSharp">
       <Private>False</Private>
     </Reference>
@@ -59,69 +31,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Benchmarks\Benchmark.cs" />
-    <Compile Include="Benchmarks\BenchmarkPatch.cs" />
-    <Compile Include="Benchmarks\DataCollector.cs" />
-    <Compile Include="Configuration\ConfigurationProvider.cs" />
-    <Compile Include="Configuration\IConfiguration.cs" />
-    <Compile Include="GameTools\CameraHelper.cs" />
-    <Compile Include="Localization\Constants.cs" />
-    <Compile Include="Localization\ILocalizationProvider.cs" />
-    <Compile Include="Localization\LocalizationExtractor.cs" />
-    <Compile Include="Localization\LocalizationProvider.cs" />
-    <Compile Include="Patching\FastDelegateFactory.cs" />
-    <Compile Include="Patching\IPatch.cs" />
-    <Compile Include="Patching\IPatcher.cs" />
-    <Compile Include="Patching\MethodPatcher.cs" />
-    <Compile Include="Patching\PatchBase.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Storage\IStorageData.cs" />
-    <Compile Include="Storage\StorageBase.cs" />
-    <Compile Include="Tools\DateTimeExtensions.cs" />
-    <Compile Include="Tools\GitVersion.cs" />
-    <Compile Include="Tools\LinkedListExtensions.cs" />
-    <Compile Include="Tools\Log.cs" />
-    <Compile Include="Tools\FastMath.cs" />
-    <Compile Include="Tools\MethodInfoExtensions.cs" />
-    <Compile Include="Tools\SerializationTools.cs" />
-    <Compile Include="UI\CitiesButtonViewItem.cs" />
-    <Compile Include="UI\CitiesCheckBoxItem.cs" />
-    <Compile Include="UI\CitiesComboBoxItem.cs" />
-    <Compile Include="UI\CitiesContainerItemBase.cs" />
-    <Compile Include="UI\CitiesGroupItem.cs" />
-    <Compile Include="UI\CitiesSliderItem.cs" />
-    <Compile Include="UI\CitiesTabItem.cs" />
-    <Compile Include="UI\CitiesViewItem.cs" />
-    <Compile Include="UI\CitiesViewItemFactory.cs" />
-    <Compile Include="UI\ConfigItemAttribute.cs" />
-    <Compile Include="UI\ConfigItemCheckBoxAttribute.cs" />
-    <Compile Include="UI\ConfigItemComboBoxAttribute.cs" />
-    <Compile Include="UI\ConfigItemSliderAttribute.cs" />
-    <Compile Include="UI\ConfigItemUIBaseAttribute.cs" />
-    <Compile Include="UI\CustomInfoPanelBase.cs" />
-    <Compile Include="UI\IContainerViewItem.cs" />
-    <Compile Include="UI\IValueViewItem.cs" />
-    <Compile Include="UI\IViewItem.cs" />
-    <Compile Include="UI\IViewItemFactory.cs" />
-    <Compile Include="UI\MessageBox.cs" />
-    <Compile Include="UI\Popup.cs" />
-    <Compile Include="UI\SliderValueType.cs" />
-    <Compile Include="UI\TitleBar.cs" />
-    <Compile Include="UI\UIComponentTools.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="SkyTools.ruleset" />
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="$(SolutionDir)packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
-    <Analyzer Include="$(SolutionDir)packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+    <PackageReference Include="GitVersionTask" Version="5.2.4">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Lib.Harmony" Version="1.2.0.1">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.164">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-  </Target>
 </Project>
