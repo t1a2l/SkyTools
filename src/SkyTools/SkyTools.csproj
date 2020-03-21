@@ -1,50 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net35</TargetFramework>
     <AssemblyTitle>SkyTools</AssemblyTitle>
     <Product>SkyTools</Product>
     <Description>Common tools for Cities: Skylines game mods</Description>
     <Copyright>Copyright © 2018-2020, dymanoid</Copyright>
-    <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
-    <DocumentationFile>..\bin\$(Configuration)\SkyTools.xml</DocumentationFile>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <OutputPath>..\bin\$(Configuration)\</OutputPath>
+    <AssemblyVersion>1.12.0.0</AssemblyVersion>
+    <FileVersion>1.12.0.0</FileVersion>
   </PropertyGroup>
   <PropertyGroup>
+    <TargetFramework>net35</TargetFramework>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AssemblySearchPaths>
        $(AssemblySearchPaths);
        $(CitiesSkylinesBinaries);
     </AssemblySearchPaths>
+    <OutputPath>..\bin\$(Configuration)\</OutputPath>
+    <DocumentationFile>..\bin\$(Configuration)\SkyTools.xml</DocumentationFile>
 </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="ColossalManaged">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="ICities">
-      <Private>False</Private>
-    </Reference>
+    <Reference Include="Assembly-CSharp"/>
+    <Reference Include="ColossalManaged"/>
+    <Reference Include="UnityEngine"/>
+    <Reference Include="ICities"/>
   </ItemGroup>
   <ItemGroup>
-    <AdditionalFiles Include="stylecop.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="GitVersionTask" Version="5.2.4">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Lib.Harmony" Version="1.2.0.1">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.164">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
+    <PackageReference Include="Lib.Harmony" Version="1.2.0.1"/>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8"/>
+    <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.164"/>
   </ItemGroup>
 </Project>
