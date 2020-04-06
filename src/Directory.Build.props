@@ -1,6 +1,17 @@
 <Project>
   <PropertyGroup>
+    <Product>SkyTools</Product>
+    <Description>Common tools for Cities: Skylines game mods</Description>
+    <Copyright>Copyright © 2018-2020, dymanoid</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <CitiesSkylinesBinaries>D:\Data\SteamLibrary\steamapps\common\Cities_Skylines\Cities_Data\Managed\</CitiesSkylinesBinaries>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <UseFullSemVerForNuGet>true</UseFullSemVerForNuGet>
   </PropertyGroup>
 
   <ItemDefinitionGroup>
@@ -13,6 +24,15 @@
   </ItemDefinitionGroup>
 
   <ItemGroup>
+    <PackageReference Include="GitVersionTask" Version="5.2.4" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8" />
+    <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.164" />
+    <PackageReference Include="Roslynator.Analyzers" Version="2.3.0" />
+    <PackageReference Include="Roslynator.CodeAnalysis.Analyzers" Version="1.0.0-beta" />
+  </ItemGroup>
+
+  <ItemGroup>
     <AdditionalFiles Include="$(SolutionDir)stylecop.json" Visible="False" />
   </ItemGroup>
+
 </Project>

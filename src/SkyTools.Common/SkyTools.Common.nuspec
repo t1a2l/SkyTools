@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>$assembly$</id>
+    <version>$version$</version>
+    <title>$assembly$</title>
+    <authors>dymanoid</authors>
+    <owners>dymanoid</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/dymanoid/SkyTools</projectUrl>
+    <description>Common tools for Cities: Skylines game mods</description>
+    <copyright>Copyright © 2018-2020, dymanoid</copyright>
+    <dependencies>
+      <group targetFramework=".NETFramework3.5" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\bin\Release\$assembly$.dll" target="lib/net35" />
+    <file src="..\bin\Release\$assembly$.xml" target="lib/net35" />
+  </files>
+</package>

@@ -1,0 +1,22 @@
+<Project>
+
+  <PropertyGroup>
+    <AssemblySearchPaths>
+      $(AssemblySearchPaths);
+      $(CitiesSkylinesBinaries);
+    </AssemblySearchPaths>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
+    <NuspecFile>$(AssemblyTitle).nuspec</NuspecFile>
+    <NoWarn>NU5105</NoWarn>
+  </PropertyGroup>
+
+  <Target Name="SetNuspecVariables" AfterTargets="Build" DependsOnTargets="Build" BeforeTargets="Pack">
+    <CreateProperty Value="assembly=$(AssemblyTitle);version=$(PackageVersion)">
+      <Output PropertyName="NuspecProperties" TaskParameter="Value" />
+    </CreateProperty>
+  </Target>
+
+</Project>
