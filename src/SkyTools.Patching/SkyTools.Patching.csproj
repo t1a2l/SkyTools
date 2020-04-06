@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyTitle>SkyTools.Patching</AssemblyTitle>
+    <Product>SkyTools</Product>
+    <Description>Common tools for Cities: Skylines game mods</Description>
+    <Copyright>Copyright © 2018-2020, dymanoid</Copyright>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net35</TargetFramework>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AssemblySearchPaths>
+       $(AssemblySearchPaths);
+       $(CitiesSkylinesBinaries);
+    </AssemblySearchPaths>
+    <OutputPath>..\bin\$(Configuration)\</OutputPath>
+    <DocumentationFile>..\bin\$(Configuration)\$(AssemblyTitle).xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Lib.Harmony" Version="1.2.0.1" />
+    <PackageReference Include="GitVersionTask" Version="5.2.4" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8" />
+    <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.164" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SkyTools.Common\SkyTools.Common.csproj" />
+  </ItemGroup>
+</Project>

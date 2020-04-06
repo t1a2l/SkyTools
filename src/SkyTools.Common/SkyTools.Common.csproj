@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <AssemblyTitle>SkyTools</AssemblyTitle>
+    <AssemblyTitle>SkyTools.Common</AssemblyTitle>
     <Product>SkyTools</Product>
     <Description>Common tools for Cities: Skylines game mods</Description>
     <Copyright>Copyright © 2018-2020, dymanoid</Copyright>
@@ -15,8 +15,8 @@
        $(CitiesSkylinesBinaries);
     </AssemblySearchPaths>
     <OutputPath>..\bin\$(Configuration)\</OutputPath>
-    <DocumentationFile>..\bin\$(Configuration)\SkyTools.xml</DocumentationFile>
-</PropertyGroup>
+    <DocumentationFile>..\bin\$(Configuration)\$(AssemblyTitle).xml</DocumentationFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp"/>
     <Reference Include="ColossalManaged"/>
@@ -24,8 +24,8 @@
     <Reference Include="ICities"/>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Lib.Harmony" Version="1.2.0.1"/>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8"/>
-    <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.164"/>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8" />
+    <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.164" />
   </ItemGroup>
+
 </Project>
