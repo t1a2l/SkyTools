@@ -7,126 +7,74 @@ namespace SkyTools.Tools
     using System;
     using System.Diagnostics;
 
-#if DEBUG
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Timers;
-#endif
-
     /// <summary>
-    /// Manages the logging. In 'Release' mode, only logs to the Unity's debug log.
-    /// Also, the 'Log.Debug(...)' method calls will be eliminated in this mode.
-    /// In 'Debug' mode logs additionally to a text file that is located on the Desktop.
+    /// Manages the logging. If DEBUG is defined at compile time, the <see cref="Log.Error"/>, <see cref="Log.Warning"/>,
+    /// and <see cref="Log.Info"/> methods will additionally log to a file configured by a call
+    /// to <see cref="Log.SetupDebug"/>. If DEBUG is not defined, all calls to methods having 'Debug' in their name
+    /// (including <see cref="Log.SetupDebug"/>) will be eliminated.
     /// </summary>
     public static class Log
     {
-#if DEBUG
-        /// <summary>File write interval in milliseconds.</summary>
-        private const int FileWriteInterval = 1000;
-        private const string LogFileName = "SkyTools.log";
-
-        private static readonly HashSet<Enum> ActiveCategories = new HashSet<Enum>();
-
-        private static readonly object SyncObject = new object();
-        private static readonly Queue<string> Storage = new Queue<string>();
-
-        private static readonly Timer FlushTimer = new Timer(FileWriteInterval) { AutoReset = false };
-        private static readonly string LogFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), LogFileName);
-
-        /// <summary>
-        /// Note: the official Unity 5 docs state that the ThreadStaticAttribute will cause the engine to crash.
-        /// However, this doesn't occur on my system. Anyway, this is only compiled in debug builds and won't affect the mod users.
-        /// </summary>
-        [ThreadStatic]
-        private static StringBuilder messageBuilder;
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Special debug configuration")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Debug build only")]
-        static Log()
-        {
-            FlushTimer.Elapsed += FlushTimer_Elapsed;
-            FlushTimer.Start();
-        }
-
         private enum InternalCategories
         {
             Default,
         }
 
-        /// <summary>Sets up the logging for specified logging categories.</summary>
+        /// <summary>Sets up the logging for specified logging categories.
+        /// This method can be called only once.
+        /// This method call will only be compiled if DEBUG is defined.</summary>
+        /// <param name="logName">The name of the log file without extension.</param>
         /// <param name="categories">The logging categories to activate.</param>
-        public static void Setup(params Enum[] categories)
+        [Conditional("DEBUG")]
+        public static void SetupDebug(string logName, params Enum[] categories)
         {
-            ActiveCategories.Clear();
-            if (categories == null || categories.Length == 0)
+            if (string.IsNullOrEmpty(logName))
             {
-                return;
+                throw new ArgumentException("The log name cannot be null or empty", nameof(logName));
             }
 
-            foreach (var item in categories)
+            if (categories == null)
             {
-                ActiveCategories.Add(item);
+                categories = new Enum[0];
             }
+
+            DebugLog.SetupDebug(logName, categories);
         }
 
-#endif
-
         /// <summary>
-        /// Logs a debug information. This method won't be compiled in the 'Release' mode.
+        /// Logs a debug information. This method call will only be compiled if DEBUG is defined.
         /// </summary>
         ///
         /// <param name="category">The log category of this log entry.</param>
         /// <param name="text">The text to log.</param>
         [Conditional("DEBUG")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Redundancy", "RCS1163", Justification = "Conditional compilation")]
-        public static void Debug(Enum category, string text)
-        {
-#if DEBUG
-            if (ActiveCategories.Contains(category))
-            {
-                DebugLog(text, category);
-            }
-#endif
-        }
+        public static void Debug(Enum category, string text) => DebugLog.Log(text, category);
 
         /// <summary>
-        /// Logs a debug information. This method won't be compiled in the 'Release' mode.
+        /// Logs a debug information. This method call will only be compiled if DEBUG is defined.
         /// </summary>
         ///
         /// <param name="category">The log category of this log entry.</param>
         /// <param name="gameTime">The current date and time in the game.</param>
         /// <param name="text">The text to log.</param>
         [Conditional("DEBUG")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Redundancy", "RCS1163", Justification = "Conditional compilation")]
         public static void Debug(Enum category, DateTime gameTime, string text)
-        {
-#if DEBUG
-            if (ActiveCategories.Contains(category))
-            {
-                DebugLog(gameTime.ToString("dd.MM.yy HH:mm") + " --> " + text, category);
-            }
-#endif
-        }
+            => DebugLog.Log(gameTime.ToString("dd.MM.yy HH:mm") + " --> " + text, category);
 
         /// <summary>
-        /// Logs a debug information. This method won't be compiled in the 'Release' mode.
+        /// Logs a debug information. This method call will only be compiled if DEBUG is defined.
         /// </summary>
         ///
         /// <param name="condition">A condition whether the debug logging should occur.</param>
         /// <param name="category">The log category of this log entry.</param>
         /// <param name="text">The text to log.</param>
         [Conditional("DEBUG")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Redundancy", "RCS1163", Justification = "Conditional compilation")]
         public static void DebugIf(bool condition, Enum category, string text)
         {
-#if DEBUG
-            if (condition && ActiveCategories.Contains(category))
+            if (condition)
             {
-                DebugLog(text, category);
+                DebugLog.Log(text, category);
             }
-#endif
         }
 
         /// <summary>
@@ -134,14 +82,10 @@ namespace SkyTools.Tools
         /// </summary>
         ///
         /// <param name="text">The text to log.</param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0022", Justification = "Conditional compilation")]
         public static void Info(string text)
         {
             UnityEngine.Debug.Log(text);
-
-#if DEBUG
-            DebugLog(text, InternalCategories.Default);
-#endif
+            DebugLog.Log(text, InternalCategories.Default);
         }
 
         /// <summary>
@@ -149,14 +93,10 @@ namespace SkyTools.Tools
         /// </summary>
         ///
         /// <param name="text">The text to log.</param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0022", Justification = "Conditional compilation")]
         public static void Warning(string text)
         {
             UnityEngine.Debug.LogWarning(text);
-
-#if DEBUG
-            DebugLog(text, InternalCategories.Default);
-#endif
+            DebugLog.Log(text, InternalCategories.Default);
         }
 
         /// <summary>
@@ -164,69 +104,10 @@ namespace SkyTools.Tools
         /// </summary>
         ///
         /// <param name="text">The text to log.</param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0022", Justification = "Conditional compilation")]
         public static void Error(string text)
         {
             UnityEngine.Debug.LogError(text);
-
-#if DEBUG
-            DebugLog(text, InternalCategories.Default);
-#endif
+            DebugLog.Log(text, InternalCategories.Default);
         }
-
-#if DEBUG
-        private static void DebugLog(string text, Enum category)
-        {
-            if (messageBuilder == null)
-            {
-                messageBuilder = new StringBuilder(1024);
-            }
-
-            messageBuilder.Length = 0;
-            messageBuilder.Append(DateTime.Now.ToString("HH:mm:ss.ffff"));
-            messageBuilder.Append('\t');
-            messageBuilder.AppendFormat("{0,-10}", category);
-            messageBuilder.Append("\t");
-            messageBuilder.Append(text);
-            string message = messageBuilder.ToString();
-            lock (SyncObject)
-            {
-                Storage.Enqueue(message);
-            }
-        }
-
-        private static void FlushTimer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            List<string> storageCopy;
-            lock (SyncObject)
-            {
-                if (Storage.Count == 0)
-                {
-                    FlushTimer.Start();
-                    return;
-                }
-
-                storageCopy = Storage.ToList();
-                Storage.Clear();
-            }
-
-            try
-            {
-                using (var writer = File.AppendText(LogFilePath))
-                {
-                    foreach (string line in storageCopy)
-                    {
-                        writer.WriteLine(line);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                UnityEngine.Debug.LogError("Error writing to the log file: " + ex.Message);
-            }
-
-            FlushTimer.Start();
-        }
-#endif
     }
 }
