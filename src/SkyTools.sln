@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29911.84
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{A8676DF9-A05B-4A78-BF42-CC8133ED7DED}"
 	ProjectSection(SolutionItems) = preProject
@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkyTools.Common", "SkyTools.Common\SkyTools.Common.csproj", "{5A76356B-E370-4914-BC04-A6552F4DA385}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkyTools.Patching", "SkyTools.Patching\SkyTools.Patching.csproj", "{1D5890BC-F931-4ECA-AECB-94D947C18C28}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,10 +23,6 @@ Global
 		{5A76356B-E370-4914-BC04-A6552F4DA385}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A76356B-E370-4914-BC04-A6552F4DA385}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A76356B-E370-4914-BC04-A6552F4DA385}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1D5890BC-F931-4ECA-AECB-94D947C18C28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D5890BC-F931-4ECA-AECB-94D947C18C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D5890BC-F931-4ECA-AECB-94D947C18C28}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D5890BC-F931-4ECA-AECB-94D947C18C28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
