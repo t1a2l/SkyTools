@@ -65,6 +65,18 @@ namespace SkyTools.UI
             tabContainer.autoLayoutPadding.bottom = 16;
             tabContainer.autoLayoutPadding.left = 10;
             tabContainer.autoLayoutPadding.right = 10;
+
+            var contentPanel = tabContainer.Find<UIPanel>("ScrollbarPanel");
+            if (contentPanel != null)
+            {
+                contentPanel.backgroundSprite = "ScrollbarTrack";
+                contentPanel.name = "MainPanel";
+                contentPanel.width = 400f;
+                contentPanel.height = 1000f;
+                contentPanel.autoLayout = true;
+            }
+
+
             return new CitiesTabItem(tabButton, new UIHelper(tabContainer), id);
         }
 
