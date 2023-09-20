@@ -5,11 +5,14 @@ namespace SkyTools.UI
     using System;
     using ColossalFramework.UI;
     using SkyTools.Localization;
+    using UnityEngine;
+    using static TerrainModify;
 
     /// <summary>A tab item container.</summary>
     /// <seealso cref="CitiesContainerItemBase"/>
     public sealed class CitiesTabItem : CitiesContainerItemBase
     {
+        private const float V_SCROLLBAR_WIDTH = 16f;
         private readonly UIButton tabButton;
 
         private CitiesTabItem(UIButton tabButton, UIHelper tabContainer, string id)
@@ -50,6 +53,7 @@ namespace SkyTools.UI
             tabButton.wordWrap = false;
             tabButton.normalBgSprite = "SubBarButtonBase";
             tabButton.disabledBgSprite = "SubBarButtonBaseDisabled";
+
             tabButton.focusedBgSprite = "SubBarButtonBaseFocused";
             tabButton.hoveredBgSprite = "SubBarButtonBaseHovered";
             tabButton.pressedBgSprite = "SubBarButtonBasePressed";
@@ -59,25 +63,8 @@ namespace SkyTools.UI
                 return null;
             }
 
-            tabContainer.padding.top = 30;
-            tabContainer.autoLayout = true;
-            tabContainer.autoLayoutDirection = LayoutDirection.Vertical;
-            tabContainer.autoLayoutPadding.bottom = 16;
-            tabContainer.autoLayoutPadding.left = 10;
-            tabContainer.autoLayoutPadding.right = 10;
-
-            var contentPanel = tabContainer.Find<UIPanel>("ScrollbarPanel");
-            if (contentPanel != null)
-            {
-                contentPanel.backgroundSprite = "ScrollbarTrack";
-                contentPanel.name = "MainPanel";
-                contentPanel.width = 400f;
-                contentPanel.height = 1000f;
-                contentPanel.autoLayout = true;
-            }
-
-
-            return new CitiesTabItem(tabButton, new UIHelper(tabContainer), id);
+            var panel = CreateScrollablePanel(tabContainer, tabStrip);
+            return new CitiesTabItem(tabButton, new UIHelper(panel), id);
         }
 
         /// <summary>Performs the actual view item translation.</summary>
@@ -93,6 +80,78 @@ namespace SkyTools.UI
 
             tabButton.text = localizationProvider.Translate(Id);
             tabButton.tooltip = tabButton.text;
+        }
+
+        private static UIScrollablePanel CreateScrollablePanel(UIPanel panel, UITabstrip tabStrip)
+        {
+            panel.autoLayout = true;
+            panel.padding.top = 30;
+            panel.autoLayoutDirection = LayoutDirection.Horizontal;
+
+            var scrollablePanel = panel.AddUIComponent<UIScrollablePanel>();
+            scrollablePanel.autoLayout = true;
+            scrollablePanel.autoLayoutPadding = new RectOffset(10, 10, 0, 16);
+            scrollablePanel.autoLayoutStart = LayoutStart.TopLeft;
+            scrollablePanel.wrapLayout = true;
+            scrollablePanel.size = new Vector2(panel.size.x - V_SCROLLBAR_WIDTH, panel.size.y);
+            scrollablePanel.autoLayoutDirection = LayoutDirection.Horizontal; // Vertical does not work but why?
+
+            var verticalScrollbar = CreateVerticalScrollbar(panel, scrollablePanel, tabStrip);
+            verticalScrollbar.Show();
+            verticalScrollbar.Invalidate();
+            scrollablePanel.Invalidate();
+
+            return scrollablePanel;
+        }
+
+        private static UIScrollbar CreateVerticalScrollbar(UIPanel panel, UIScrollablePanel scrollablePanel, UITabstrip tabStrip)
+        {
+            var verticalScrollbar = panel.AddUIComponent<UIScrollbar>();
+            verticalScrollbar.name = "VerticalScrollbar";
+            verticalScrollbar.width = V_SCROLLBAR_WIDTH;
+            verticalScrollbar.height = tabStrip.tabPages.height;
+            verticalScrollbar.orientation = UIOrientation.Vertical;
+            verticalScrollbar.pivot = UIPivotPoint.TopLeft;
+            verticalScrollbar.AlignTo(panel, UIAlignAnchor.TopRight);
+            verticalScrollbar.minValue = 0;
+            verticalScrollbar.value = 0;
+            verticalScrollbar.incrementAmount = 50;
+            verticalScrollbar.autoHide = true;
+
+            var trackSprite = verticalScrollbar.AddUIComponent<UISlicedSprite>();
+            trackSprite.relativePosition = Vector2.zero;
+            trackSprite.autoSize = true;
+            trackSprite.size = trackSprite.parent.size;
+            trackSprite.fillDirection = UIFillDirection.Vertical;
+            trackSprite.spriteName = "ScrollbarTrack";
+            verticalScrollbar.trackObject = trackSprite;
+
+            var thumbSprite = trackSprite.AddUIComponent<UISlicedSprite>();
+            thumbSprite.relativePosition = Vector2.zero;
+            thumbSprite.fillDirection = UIFillDirection.Vertical;
+            thumbSprite.autoSize = true;
+            thumbSprite.width = thumbSprite.parent.width;
+            thumbSprite.spriteName = "ScrollbarThumb";
+            verticalScrollbar.thumbObject = thumbSprite;
+
+            verticalScrollbar.eventValueChanged += (component, value) =>
+            {
+                scrollablePanel.scrollPosition = new Vector2(0, value);
+            };
+
+            panel.eventMouseWheel += (component, eventParam) =>
+            {
+                verticalScrollbar.value -= (int)eventParam.wheelDelta * verticalScrollbar.incrementAmount;
+            };
+
+            scrollablePanel.eventMouseWheel += (component, eventParam) =>
+            {
+                verticalScrollbar.value -= (int)eventParam.wheelDelta * verticalScrollbar.incrementAmount;
+            };
+
+            scrollablePanel.verticalScrollbar = verticalScrollbar;
+
+            return verticalScrollbar;
         }
     }
 }
