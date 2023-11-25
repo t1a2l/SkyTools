@@ -10,6 +10,7 @@ namespace SkyTools.Tools
     using System.Linq;
     using System.Text;
     using System.Timers;
+    using UnityEngine;
 
     /// <summary>
     /// A class that manages the thread-safe debug logging.
@@ -49,8 +50,8 @@ namespace SkyTools.Tools
                     throw new InvalidOperationException("This method can be only called once.");
                 }
 
-                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                string logFilePath = Path.Combine(desktopPath, logFileName + ".log");
+                string dir = Path.Combine(Application.dataPath, "Logs");
+                string logFilePath = Path.Combine(dir, logFileName + ".log");
                 FlushTimer.Elapsed += (s, e) => WriteLogFile(logFilePath);
                 FlushTimer.Start();
 
