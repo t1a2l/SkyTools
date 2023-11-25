@@ -12,7 +12,7 @@ namespace SkyTools.UI
     /// <seealso cref="CitiesContainerItemBase"/>
     public sealed class CitiesTabItem : CitiesContainerItemBase
     {
-        private const float V_SCROLLBAR_WIDTH = 16f;
+        private const float VSCROLLBARWIDTH = 16f;
         private readonly UIButton tabButton;
 
         private CitiesTabItem(UIButton tabButton, UIHelper tabContainer, string id)
@@ -93,7 +93,7 @@ namespace SkyTools.UI
             scrollablePanel.autoLayoutPadding = new RectOffset(10, 10, 0, 16);
             scrollablePanel.autoLayoutStart = LayoutStart.TopLeft;
             scrollablePanel.wrapLayout = true;
-            scrollablePanel.size = new Vector2(panel.size.x - V_SCROLLBAR_WIDTH, panel.size.y);
+            scrollablePanel.size = new Vector2(panel.size.x - VSCROLLBARWIDTH, panel.size.y);
             scrollablePanel.autoLayoutDirection = LayoutDirection.Horizontal; // Vertical does not work but why?
 
             var verticalScrollbar = CreateVerticalScrollbar(panel, scrollablePanel, tabStrip);
@@ -108,7 +108,7 @@ namespace SkyTools.UI
         {
             var verticalScrollbar = panel.AddUIComponent<UIScrollbar>();
             verticalScrollbar.name = "VerticalScrollbar";
-            verticalScrollbar.width = V_SCROLLBAR_WIDTH;
+            verticalScrollbar.width = VSCROLLBARWIDTH;
             verticalScrollbar.height = tabStrip.tabPages.height;
             verticalScrollbar.orientation = UIOrientation.Vertical;
             verticalScrollbar.pivot = UIPivotPoint.TopLeft;
