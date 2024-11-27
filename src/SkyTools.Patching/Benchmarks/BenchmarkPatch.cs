@@ -46,28 +46,24 @@ namespace SkyTools.Benchmarks
         /// <returns>A <see cref="MethodInfo" /> instance of the method to patch.</returns>
         protected override MethodInfo GetMethod() => Method;
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Redundancy", "RCS1213", Justification = "Harmony patch")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming Rules", "SA1313", Justification = "Harmony patch")]
-        private static void Prefix(MethodInfo __originalMethod)
+        private static void Prefix(MethodInfo originalMethod)
         {
             long started = Stopwatch.GetTimestamp();
-            if (__originalMethod == null)
+            if (originalMethod == null)
             {
                 return;
             }
 
             lock (SyncObject)
             {
-                Ticks[__originalMethod] = started;
+                Ticks[originalMethod] = started;
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Redundancy", "RCS1213", Justification = "Harmony patch")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming Rules", "SA1313", Justification = "Harmony patch")]
-        private static void Postfix(MethodInfo __originalMethod)
+        private static void Postfix(MethodInfo originalMethod)
         {
             long stopped = Stopwatch.GetTimestamp();
-            if (__originalMethod == null || DataCollector == null)
+            if (originalMethod == null || DataCollector == null)
             {
                 return;
             }
@@ -75,7 +71,7 @@ namespace SkyTools.Benchmarks
             long started;
             lock (SyncObject)
             {
-                Ticks.TryGetValue(__originalMethod, out started);
+                Ticks.TryGetValue(originalMethod, out started);
             }
 
             if (started == 0 || started > stopped)
@@ -84,7 +80,7 @@ namespace SkyTools.Benchmarks
             }
 
             long elapsed = stopped - started;
-            DataCollector.RecordSample(__originalMethod, elapsed);
+            DataCollector.RecordSample(originalMethod, elapsed);
         }
     }
 }

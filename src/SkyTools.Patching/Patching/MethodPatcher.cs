@@ -8,13 +8,12 @@ namespace SkyTools.Patching
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using Harmony;
+    using HarmonyLib;
     using SkyTools.Tools;
 
     /// <summary>
     /// A class that uses Harmony library for redirecting the game's methods.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Patcher", Justification = "Reviewed")]
     public sealed class MethodPatcher
     {
         private readonly Patcher patcher;
@@ -39,7 +38,7 @@ namespace SkyTools.Patching
 
             this.id = id;
             this.patches = patches;
-            var harmony = HarmonyInstance.Create(id);
+            var harmony = new Harmony(id);
             patcher = new Patcher(harmony);
         }
 
@@ -85,9 +84,9 @@ namespace SkyTools.Patching
 
         private sealed class Patcher : IPatcher
         {
-            private readonly HarmonyInstance harmony;
+            private readonly Harmony harmony;
 
-            public Patcher(HarmonyInstance harmony)
+            public Patcher(Harmony harmony)
             {
                 this.harmony = harmony;
             }

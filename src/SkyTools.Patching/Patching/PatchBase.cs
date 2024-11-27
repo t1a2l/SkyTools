@@ -81,7 +81,6 @@ namespace SkyTools.Patching
         /// Can return null if no patching is possible due to some reason.
         /// </summary>
         /// <returns>A <see cref="MethodInfo"/> instance of the method to patch, or null.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Can be time-consuming and/or have side effects")]
         protected abstract MethodInfo GetMethod();
     }
 }

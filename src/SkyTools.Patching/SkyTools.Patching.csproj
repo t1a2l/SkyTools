@@ -5,13 +5,20 @@
     <OutputPath>..\bin\$(Configuration)\</OutputPath>
     <DocumentationFile>..\bin\$(Configuration)\$(AssemblyTitle).xml</DocumentationFile>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Lib.Harmony" Version="1.2.0.1" />
+    <PackageReference Include="Lib.Harmony" Version="2.3.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SkyTools.Common\SkyTools.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="GitVersionTask" Version="5.5.1" />
+    <PackageReference Update="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.2" />
+    <PackageReference Update="Roslynator.Analyzers" Version="4.12.9" />
+    <PackageReference Update="Roslynator.CodeAnalysis.Analyzers" Version="4.12.9" />
+    <PackageReference Update="StyleCop.Analyzers.Unstable" Version="1.2.0.556" />
   </ItemGroup>
 
 </Project>

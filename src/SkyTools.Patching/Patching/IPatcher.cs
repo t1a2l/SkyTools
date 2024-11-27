@@ -5,7 +5,6 @@ namespace SkyTools.Patching
     using System.Reflection;
 
     /// <summary>An interface for method patching processor.</summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Patcher", Justification = "Reviewed")]
     public interface IPatcher
     {
         /// <summary>
