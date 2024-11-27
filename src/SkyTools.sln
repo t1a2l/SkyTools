@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkyTools.Common", "SkyTools.Common\SkyTools.Common.csproj", "{5A76356B-E370-4914-BC04-A6552F4DA385}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkyTools.Patching", "SkyTools.Patching\SkyTools.Patching.csproj", "{3C411E82-73FE-45AF-971D-BAE2DDF7D125}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{5A76356B-E370-4914-BC04-A6552F4DA385}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A76356B-E370-4914-BC04-A6552F4DA385}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A76356B-E370-4914-BC04-A6552F4DA385}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C411E82-73FE-45AF-971D-BAE2DDF7D125}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C411E82-73FE-45AF-971D-BAE2DDF7D125}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C411E82-73FE-45AF-971D-BAE2DDF7D125}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C411E82-73FE-45AF-971D-BAE2DDF7D125}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

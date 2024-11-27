@@ -45,8 +45,9 @@ namespace SkyTools.UI
 
         /// <summary>When implemented in derived classes, updates the custom information in this panel.</summary>
         /// <param name="instance">The game object instance to get the information from.</param>
+        /// <param name="debugMode">A Debug mode to add text for debug.</param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1045:DoNotPassTypesByReference", MessageId = "0#", Justification = "Performance")]
-        public abstract void UpdateCustomInfo(ref InstanceID instance);
+        public abstract void UpdateCustomInfo(ref InstanceID instance, bool debugMode = false);
 
         /// <summary>Initializes this instance and builds up the custom UI objects.</summary>
         /// <returns><c>true</c> on success; otherwise, <c>false</c>.</returns>
