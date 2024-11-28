@@ -18,14 +18,23 @@ namespace SkyTools.Tools
         /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
         public static string ToFullString(this MethodInfo method)
         {
-            if (method == null)
+            try
             {
+                if (method == null)
+                {
+                    Log.Error("ArgumentNullExceptionToFullString: " + nameof(method) + ", name is: " + method.Name);
+                    throw new ArgumentNullException(nameof(method));
+                }
+
+                string result = method.ToString();
+                int spaceIndex = result.IndexOf(' ');
+                return spaceIndex < 0 ? result : result.Insert(spaceIndex + 1, method.ReflectedType.Name + ".");
+            }
+            catch (Exception ex)
+            {
+                Log.Error("ToFullString caused an error: " + ex);
                 throw new ArgumentNullException(nameof(method));
             }
-
-            string result = method.ToString();
-            int spaceIndex = result.IndexOf(' ');
-            return spaceIndex < 0 ? result : result.Insert(spaceIndex + 1, method.ReflectedType.Name + ".");
         }
     }
 }
