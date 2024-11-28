@@ -46,24 +46,24 @@ namespace SkyTools.Benchmarks
         /// <returns>A <see cref="MethodInfo" /> instance of the method to patch.</returns>
         protected override MethodInfo GetMethod() => Method;
 
-        private static void Prefix(MethodInfo originalMethod)
+        private static void Prefix(MethodInfo __originalMethod)
         {
             long started = Stopwatch.GetTimestamp();
-            if (originalMethod == null)
+            if (__originalMethod == null)
             {
                 return;
             }
 
             lock (SyncObject)
             {
-                Ticks[originalMethod] = started;
+                Ticks[__originalMethod] = started;
             }
         }
 
-        private static void Postfix(MethodInfo originalMethod)
+        private static void Postfix(MethodInfo __originalMethod)
         {
             long stopped = Stopwatch.GetTimestamp();
-            if (originalMethod == null || DataCollector == null)
+            if (__originalMethod == null || DataCollector == null)
             {
                 return;
             }
@@ -71,7 +71,7 @@ namespace SkyTools.Benchmarks
             long started;
             lock (SyncObject)
             {
-                Ticks.TryGetValue(originalMethod, out started);
+                Ticks.TryGetValue(__originalMethod, out started);
             }
 
             if (started == 0 || started > stopped)
@@ -80,7 +80,7 @@ namespace SkyTools.Benchmarks
             }
 
             long elapsed = stopped - started;
-            DataCollector.RecordSample(originalMethod, elapsed);
+            DataCollector.RecordSample(__originalMethod, elapsed);
         }
     }
 }
