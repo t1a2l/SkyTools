@@ -40,30 +40,28 @@ namespace SkyTools.Benchmarks
         /// <summary>Gets the method this patch measures.</summary>
         public MethodInfo Method { get; }
 
-        /// <summary>
-        /// Gets the <see cref="MethodInfo" /> instance of the method to patch.
-        /// </summary>
-        /// <returns>A <see cref="MethodInfo" /> instance of the method to patch.</returns>
-        protected override MethodInfo GetMethod() => Method;
-
-        private static void Prefix(MethodInfo __originalMethod)
+        /// <summary>Prefix.</summary>
+        /// <param name="originalMethod">The originalMethod that holds the method to benchmark.</param>
+        public static void Prefix(MethodInfo originalMethod)
         {
             long started = Stopwatch.GetTimestamp();
-            if (__originalMethod == null)
+            if (originalMethod == null)
             {
                 return;
             }
 
             lock (SyncObject)
             {
-                Ticks[__originalMethod] = started;
+                Ticks[originalMethod] = started;
             }
         }
 
-        private static void Postfix(MethodInfo __originalMethod)
+        /// <summary>Postfix.</summary>
+        /// <param name="originalMethod">The originalMethod that holds the method to benchmark.</param>
+        public static void Postfix(MethodInfo originalMethod)
         {
             long stopped = Stopwatch.GetTimestamp();
-            if (__originalMethod == null || DataCollector == null)
+            if (originalMethod == null || DataCollector == null)
             {
                 return;
             }
@@ -71,7 +69,7 @@ namespace SkyTools.Benchmarks
             long started;
             lock (SyncObject)
             {
-                Ticks.TryGetValue(__originalMethod, out started);
+                Ticks.TryGetValue(originalMethod, out started);
             }
 
             if (started == 0 || started > stopped)
@@ -80,7 +78,13 @@ namespace SkyTools.Benchmarks
             }
 
             long elapsed = stopped - started;
-            DataCollector.RecordSample(__originalMethod, elapsed);
+            DataCollector.RecordSample(originalMethod, elapsed);
         }
+
+        /// <summary>
+        /// Gets the <see cref="MethodInfo" /> instance of the method to patch.
+        /// </summary>
+        /// <returns>A <see cref="MethodInfo" /> instance of the method to patch.</returns>
+        protected override MethodInfo GetMethod() => Method;
     }
 }
