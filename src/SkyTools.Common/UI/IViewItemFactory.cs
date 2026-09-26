@@ -53,6 +53,8 @@ namespace SkyTools.UI
         /// <param name="step">The slider step value.</param>
         /// <param name="valueType">Type of the value to be represented by the slider.</param>
         /// <param name="displayMultiplier">A value that will be multiplied with original values for displaying purposes.</param>
+        /// <param name="minFrom">The name of a configuration property whose current value determines this slider's minimum.</param>
+        /// <param name="maxFrom">The name of a configuration property whose current value determines this slider's maximum.</param>
         /// <returns>A newly created <see cref="IViewItem"/> instance representing a slider.</returns>
         /// <exception cref="ArgumentNullException">Thrown when any argument is null.</exception>
         /// <exception cref="ArgumentException">Thrown when <paramref name="id"/> is an empty string.</exception>
@@ -73,7 +75,9 @@ namespace SkyTools.UI
             float max,
             float step,
             SliderValueType valueType,
-            float displayMultiplier);
+            float displayMultiplier,
+            string minFrom,
+            string maxFrom);
 
         /// <summary>Creates a new combo box view item.</summary>
         /// <param name="container">The parent container for the created item.</param>

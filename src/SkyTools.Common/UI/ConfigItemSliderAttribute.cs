@@ -72,5 +72,15 @@ namespace SkyTools.UI
 
         /// <summary>Gets or sets a value that will be multiplied with the original value for displaying purpose only.</summary>
         public float DisplayMultiplier { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of a float configuration property whose value sets this slider's minimum.
+        /// </summary>
+        public string MinFrom { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of a float configuration property whose value sets this slider's maximum.
+        /// </summary>
+        public string MaxFrom { get; set; }
     }
 }
