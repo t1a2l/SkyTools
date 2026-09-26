@@ -79,6 +79,11 @@ namespace SkyTools.UI
         public string MinFrom { get; set; }
 
         /// <summary>
+        /// Gets or sets the minimum offset added to MinFrom.
+        /// </summary>
+        public float MinOffset { get; set; }
+
+        /// <summary>
         /// Gets or sets the name of a float configuration property whose value sets this slider's maximum.
         /// </summary>
         public string MaxFrom { get; set; }
