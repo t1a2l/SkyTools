@@ -167,20 +167,21 @@ namespace SkyTools.UI
         /// <param name="max">Update the maximum range for the slider.</param>
         public void SetRange(float min, float max)
         {
-            if (max < min)
+            if (max <= min)
             {
                 throw new ArgumentException("The maximum value must be greater than the minimum value.");
             }
 
-            // Keep the control's internal range nonzero until you have
-            // verified that UISlider supports equal bounds safely.
-            UIComponent.minValue = min;
-            UIComponent.maxValue = min + UIComponent.stepSize;
-            UIComponent.value = min;
-
             float clamped = Math.Max(min, Math.Min(max, CurrentValue));
 
+            UIComponent.maxValue = max;
+            UIComponent.minValue = min;
             UIComponent.value = clamped;
+            UIComponent.Invalidate();
+
+            var thumb = UIComponent.thumbObject;
+            UIComponent.thumbObject = null;
+            UIComponent.thumbObject = thumb;
 
             if (CurrentValue != clamped)
             {
